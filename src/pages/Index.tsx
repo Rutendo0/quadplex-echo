@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import { useEffect, useMemo, useState } from "react";
 import { PressHoldButton } from "@/components/PressHoldButton";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import heroImage from "@/assets/clouds-hero.jpg";
 
 const Index = () => {
@@ -73,9 +74,17 @@ const Index = () => {
               <PressHoldButton onComplete={() => setEntered(true)} />
             )
           ) : (
-            <div className="flex items-center justify-center gap-4">
-              <Button variant="hero">Explore Residences</Button>
-              <Button variant="outline">Enquire</Button>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-3xl animate-enter">
+              <Link to="/residential" className="group block rounded-lg border bg-card/50 backdrop-blur-sm p-8 hover-scale">
+                <h3 className="text-2xl font-serif">Residential</h3>
+                <p className="mt-2 text-muted-foreground">Private sanctuary in the clouds.</p>
+                <div className="mt-6"><Button variant="hero">Explore</Button></div>
+              </Link>
+              <Link to="/commercial" className="group block rounded-lg border bg-card/50 backdrop-blur-sm p-8 hover-scale">
+                <h3 className="text-2xl font-serif">Commercial</h3>
+                <p className="mt-2 text-muted-foreground">Elevated spaces for modern business.</p>
+                <div className="mt-6"><Button variant="hero">Explore</Button></div>
+              </Link>
             </div>
           )}
         </div>
