@@ -1,7 +1,8 @@
 import { Helmet } from "react-helmet-async";
 import heroImage from "@/assets/clouds-hero.jpg";
 import { Button } from "@/components/ui/button";
-
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 const Residential = () => {
   const canonical = typeof window !== 'undefined' ? window.location.href : 'https://quadplex80.com/residential';
 
@@ -25,7 +26,7 @@ const Residential = () => {
             Serenity, privacy, and panoramic horizons. Crafted interiors and timeless materials elevate everyday living.
           </p>
           <div className="mt-6 flex gap-3">
-            <a href="#explore"><Button variant="hero">Explore</Button></a>
+            <Button variant="hero" onClick={() => document.getElementById('explore')?.scrollIntoView({ behavior: 'smooth' })}>Explore</Button>
             <a href="/"><Button variant="outline">Back Home</Button></a>
           </div>
         </div>
@@ -44,6 +45,23 @@ const Residential = () => {
               <li>Wellness suite</li>
               <li>Dedicated concierge</li>
             </ul>
+          </div>
+        </article>
+
+        <article className="space-y-6">
+          <h2 className="text-2xl font-serif">Property Types</h2>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+            {[
+              { key: "apartments", title: "Apartments" },
+              { key: "duplex", title: "E-bedroomed duplex" },
+              { key: "single-storey", title: "Single-storey" },
+              { key: "others", title: "Others" },
+            ].map((item) => (
+              <Link key={item.key} to={`/residential/${item.key}`} className="group block rounded-lg border bg-card/50 backdrop-blur-sm p-6 hover-scale">
+                <motion.h3 whileHover={{ y: -2 }} className="text-lg font-medium">{item.title}</motion.h3>
+                <p className="mt-1 text-sm text-muted-foreground">Explore details and floor plans</p>
+              </Link>
+            ))}
           </div>
         </article>
       </section>

@@ -1,14 +1,14 @@
 import { Helmet } from "react-helmet-async";
 import { useEffect, useMemo, useState } from "react";
-import { PressHoldButton } from "@/components/PressHoldButton";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import heroImage from "@/assets/clouds-hero.jpg";
+import { motion } from "framer-motion";
 
 const Index = () => {
   const [loading, setLoading] = useState(true);
   const [progress, setProgress] = useState(0);
-  const [entered, setEntered] = useState(false);
+  
 
   useEffect(() => {
     if (!loading) return;
@@ -62,44 +62,67 @@ const Index = () => {
         </header>
 
         <div className="w-full max-w-md">
-          {!entered ? (
-            loading ? (
-              <div className="text-center select-none">
-                <div className="text-2xl md:text-3xl font-serif mb-6" aria-live="polite">
-                  {Math.round(progress)}%
-                </div>
-                <p className="text-sm uppercase tracking-widest text-muted-foreground">Loading</p>
+          {loading ? (
+            <div className="text-center select-none">
+              <div className="text-2xl md:text-3xl font-serif mb-6" aria-live="polite">
+                {Math.round(progress)}%
               </div>
-            ) : (
-              <PressHoldButton onComplete={() => setEntered(true)} />
-            )
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-3xl animate-enter">
-              <Link to="/residential" className="group block rounded-lg border bg-card/50 backdrop-blur-sm p-8 hover-scale">
-                <h3 className="text-2xl font-serif">Residential</h3>
-                <p className="mt-2 text-muted-foreground">Private sanctuary in the clouds.</p>
-                <div className="mt-6"><Button variant="hero">Explore</Button></div>
-              </Link>
-              <Link to="/commercial" className="group block rounded-lg border bg-card/50 backdrop-blur-sm p-8 hover-scale">
-                <h3 className="text-2xl font-serif">Commercial</h3>
-                <p className="mt-2 text-muted-foreground">Elevated spaces for modern business.</p>
-                <div className="mt-6"><Button variant="hero">Explore</Button></div>
-              </Link>
+              <p className="text-sm uppercase tracking-widest text-muted-foreground">Loading</p>
             </div>
+          ) : (
+            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="text-center">
+              <Button
+                variant="hero"
+                className="h-12 px-8"
+                onClick={() => {
+                  const el = document.getElementById("experience");
+                  el?.scrollIntoView({ behavior: "smooth" });
+                }}
+                aria-label="Enter Experience"
+              >
+                Enter Experience
+              </Button>
+            </motion.div>
           )}
         </div>
       </section>
 
-      {/* Structured Data */}
-      <script type="application/ld+json">
-        {JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "WebSite",
-          name: "Quadplex 80 — Above the Clouds",
-          url: canonical,
-          description: "Rise above the city to your private sanctuary in the clouds.",
-        })}
-      </script>
+      {/* Experience section with video and selection */}
+      <section id="experience" className="relative py-24">
+        <div className="absolute inset-0 -z-10">
+          <video
+            className="h-full w-full object-cover"
+            autoPlay
+            muted
+            loop
+            playsInline
+            poster={heroImage}
+          >
+            <source src="/videos/clouds.mp4" type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-background/40 to-background" />
+        </div>
+
+        <div className="container">
+          <motion.div initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="max-w-2xl">
+            <h2 className="text-3xl md:text-4xl font-serif font-semibold">Explore the Community</h2>
+            <p className="mt-2 text-muted-foreground">Choose your path to elevated living or modern business.</p>
+          </motion.div>
+
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+            <Link to="/residential" className="group block rounded-lg border bg-card/60 backdrop-blur-md p-8 hover-scale">
+              <motion.h3 whileHover={{ y: -2 }} className="text-2xl font-serif">Residential</motion.h3>
+              <p className="mt-2 text-muted-foreground">Private sanctuary in the clouds.</p>
+              <div className="mt-6"><Button variant="hero">Enter</Button></div>
+            </Link>
+            <Link to="/commercial" className="group block rounded-lg border bg-card/60 backdrop-blur-md p-8 hover-scale">
+              <motion.h3 whileHover={{ y: -2 }} className="text-2xl font-serif">Commercial</motion.h3>
+              <p className="mt-2 text-muted-foreground">Elevated spaces for modern business.</p>
+              <div className="mt-6"><Button variant="hero">Enter</Button></div>
+            </Link>
+          </div>
+        </div>
+      </section>
     </main>
   );
 };

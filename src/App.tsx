@@ -8,6 +8,8 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Residential from "./pages/Residential";
 import Commercial from "./pages/Commercial";
+import ResidentialDetail from "./pages/ResidentialDetail";
+import CommercialDetail from "./pages/CommercialDetail";
 
 const queryClient = new QueryClient();
 
@@ -21,7 +23,9 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/residential" element={<Residential />} />
+            <Route path="/residential/:type" element={<ResidentialDetail />} />
             <Route path="/commercial" element={<Commercial />} />
+            <Route path="/commercial/:type" element={<CommercialDetail />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
