@@ -162,396 +162,65 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Professional Cinematic Experience */}
+      {/* Clean Cinematic Experience */}
       {playingExperience && (
         <motion.div 
           initial={{ opacity: 0 }} 
           animate={{ opacity: 1 }} 
           className="fixed inset-0 z-50 bg-black overflow-hidden"
         >
-          {/* Stage 1: High altitude clouds view */}
+          {/* Smooth, clean transition */}
           <motion.div
             className="absolute inset-0"
-            initial={{ scale: 1.5, opacity: 1 }}
-            animate={{ 
-              scale: [1.5, 1.2, 2.5],
-              opacity: [1, 1, 0],
-              y: [0, 0, "50vh"]
-            }}
-            transition={{ 
-              duration: 4,
-              times: [0, 0.6, 1],
-              ease: [0.25, 0.46, 0.45, 0.94]
-            }}
+            initial={{ scale: 1.2, opacity: 1 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 2, ease: "easeOut" }}
           >
             <div 
-              className="h-full w-full bg-cover bg-center filter"
+              className="h-full w-full bg-cover bg-center"
               style={{
                 backgroundImage: `url(${heroImage})`,
-                filter: "brightness(0.7) contrast(1.1) saturate(0.8)"
+                filter: "brightness(0.9) contrast(1.1) saturate(1.0)"
               }}
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-sky-400/20 via-blue-300/10 to-transparent" />
-            
-            {/* Cloud particles */}
-            <div className="absolute inset-0">
-              {[...Array(8)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  className="absolute w-32 h-32 bg-white/5 rounded-full blur-xl"
-                  style={{
-                    left: `${Math.random() * 100}%`,
-                    top: `${Math.random() * 100}%`,
-                  }}
-                  animate={{
-                    x: [0, Math.random() * 100 - 50],
-                    y: [0, Math.random() * 100 - 50],
-                    scale: [1, 1.2, 0.8],
-                    opacity: [0.3, 0.6, 0]
-                  }}
-                  transition={{
-                    duration: 6,
-                    ease: "easeInOut"
-                  }}
-                />
-              ))}
-            </div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
           </motion.div>
 
-          {/* Stage 2: Descent through clouds */}
+          {/* Simple Navigation Buttons Only */}
           <motion.div
-            className="absolute inset-0"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: [0, 1, 1, 0], scale: [0.8, 1, 1.2, 1.5] }}
-            transition={{ 
-              duration: 3,
-              delay: 2,
-              times: [0, 0.3, 0.7, 1],
-              ease: "easeInOut"
-            }}
-          >
-            <div className="h-full w-full bg-gradient-to-b from-blue-200/30 via-green-100/20 to-green-200/40" />
-            
-            {/* Descent speed lines */}
-            <div className="absolute inset-0">
-              {[...Array(12)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  className="absolute w-px bg-white/40"
-                  style={{
-                    left: `${Math.random() * 100}%`,
-                    height: "100%",
-                  }}
-                  animate={{
-                    y: ["-100vh", "100vh"],
-                    opacity: [0, 1, 0]
-                  }}
-                  transition={{
-                    duration: 1.5,
-                    delay: 2 + Math.random() * 2,
-                    ease: "linear"
-                  }}
-                />
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Stage 3: Community reveal with professional 3D effect */}
-          <motion.div
-            className="absolute inset-0"
-            initial={{ y: "100vh", rotateX: 45, opacity: 0 }}
-            animate={{ y: 0, rotateX: 0, opacity: 1 }}
-            transition={{ 
-              duration: 2.5,
-              delay: 4,
-              ease: [0.25, 0.46, 0.45, 0.94]
-            }}
-            style={{ 
-              perspective: "1000px",
-              transformStyle: "preserve-3d"
-            }}
-          >
-            <motion.div
-              className="h-full w-full relative"
-              initial={{ scale: 1.2 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 2, delay: 4.5, ease: "easeOut" }}
-            >
-              <div 
-                className="h-full w-full bg-cover bg-center"
-                style={{
-                  backgroundImage: `url(${heroImage})`,
-                  filter: "brightness(1.1) contrast(1.2) saturate(1.1)"
-                }}
-              />
-              
-              {/* Professional overlay with depth */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-              
-              {/* Animated grid for 3D community layout */}
-              <motion.div
-                className="absolute inset-0"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 0.3 }}
-                transition={{ delay: 5.5, duration: 1 }}
-              >
-                <svg className="w-full h-full" viewBox="0 0 100 100">
-                  <defs>
-                    <pattern id="communityGrid" width="5" height="5" patternUnits="userSpaceOnUse">
-                      <path d="M 5 0 L 0 0 0 5" fill="none" stroke="rgba(255,255,255,0.2)" strokeWidth="0.3"/>
-                    </pattern>
-                  </defs>
-                  <rect width="100" height="100" fill="url(#communityGrid)" />
-                </svg>
-              </motion.div>
-
-              {/* Community zones with professional markers */}
-              <div className="absolute inset-0">
-                {[
-                  { x: 30, y: 40, label: "Residential", color: "emerald" },
-                  { x: 65, y: 35, label: "Commercial", color: "blue" },
-                  { x: 45, y: 60, label: "Recreation", color: "amber" },
-                  { x: 25, y: 75, label: "Gardens", color: "green" },
-                  { x: 70, y: 70, label: "Amenities", color: "purple" }
-                ].map((zone, i) => (
-                  <motion.div
-                    key={i}
-                    className="absolute"
-                    style={{ left: `${zone.x}%`, top: `${zone.y}%` }}
-                    initial={{ scale: 0, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ delay: 5.5 + i * 0.3, duration: 0.6, type: "spring" }}
-                  >
-                    <div className="relative flex items-center justify-center">
-                      <motion.div
-                        className={`w-4 h-4 bg-${zone.color}-400 rounded-full shadow-lg`}
-                        animate={{ scale: [1, 1.2, 1] }}
-                        transition={{ duration: 2, repeat: Infinity }}
-                      />
-                      <motion.div
-                        className={`absolute w-8 h-8 border-2 border-${zone.color}-400/50 rounded-full`}
-                        animate={{ scale: [1, 1.5, 1], opacity: [0.5, 0, 0.5] }}
-                        transition={{ duration: 2, repeat: Infinity }}
-                      />
-                      <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-black/80 text-white px-2 py-1 rounded text-xs font-medium whitespace-nowrap">
-                        {zone.label}
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-          </motion.div>
-
-          {/* Flying elements for atmosphere */}
-          <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            {[...Array(6)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute"
-                initial={{ x: -100, y: `${20 + i * 15}%`, opacity: 0 }}
-                animate={{ 
-                  x: "110vw", 
-                  y: [`${20 + i * 15}%`, `${15 + i * 15}%`, `${25 + i * 15}%`],
-                  opacity: [0, 0.7, 0]
-                }}
-                transition={{ 
-                  duration: 8 + i,
-                  delay: 1 + i * 0.4,
-                  ease: "easeInOut"
-                }}
-              >
-                <div className="w-6 h-2 bg-white/60 rounded-full blur-sm" />
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Final Navigation Buttons */}
-          <motion.div
-            className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-50"
-            initial={{ opacity: 0, y: 50 }}
+            className="absolute bottom-12 left-1/2 transform -translate-x-1/2"
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 7, duration: 1, ease: "easeOut" }}
+            transition={{ delay: 1.5, duration: 1, ease: "easeOut" }}
           >
-            <div className="flex space-x-6">
+            <div className="flex space-x-8">
               <Link href="/residential">
                 <motion.button
-                  className="group relative overflow-hidden bg-white/10 backdrop-blur-md border border-white/20 rounded-lg px-8 py-4 text-white hover:bg-white/20 transition-all duration-300"
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
+                  className="bg-white/15 backdrop-blur-md border border-white/30 rounded-lg px-10 py-5 text-white text-lg font-medium tracking-wide hover:bg-white/25 transition-all duration-300"
+                  whileHover={{ scale: 1.05, y: -3 }}
+                  whileTap={{ scale: 0.98 }}
                 >
-                  <span className="relative z-10 font-medium tracking-wider">Residential</span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/20 to-blue-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  Residential
                 </motion.button>
               </Link>
               
               <Link href="/commercial">
                 <motion.button
-                  className="group relative overflow-hidden bg-white/10 backdrop-blur-md border border-white/20 rounded-lg px-8 py-4 text-white hover:bg-white/20 transition-all duration-300"
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
+                  className="bg-white/15 backdrop-blur-md border border-white/30 rounded-lg px-10 py-5 text-white text-lg font-medium tracking-wide hover:bg-white/25 transition-all duration-300"
+                  whileHover={{ scale: 1.05, y: -3 }}
+                  whileTap={{ scale: 0.98 }}
                 >
-                  <span className="relative z-10 font-medium tracking-wider">Commercial</span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  Commercial
                 </motion.button>
               </Link>
             </div>
-            
-            <motion.p
-              className="text-center text-white/60 text-sm mt-4 tracking-wide"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 8, duration: 1 }}
-            >
-              Explore your future above the clouds
-            </motion.p>
           </motion.div>
 
-          {/* Floating particles for magical effect */}
-          <div className="absolute inset-0 pointer-events-none">
-            {[...Array(12)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute w-1 h-1 bg-white/60 rounded-full"
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                }}
-                animate={{
-                  y: [0, -30, 0],
-                  opacity: [0.3, 1, 0.3],
-                  scale: [0.5, 1, 0.5],
-                }}
-                transition={{
-                  duration: 3 + Math.random() * 2,
-                  repeat: Infinity,
-                  delay: Math.random() * 3,
-                  ease: "easeInOut"
-                }}
-              />
-            ))}
-          </div>
 
-          {/* Community Title and Description */}
-          <motion.div
-            className="absolute inset-x-0 top-1/3 text-center text-white z-10"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: experienceReady ? 0 : 1, y: experienceReady ? -20 : 0 }}
-            transition={{ duration: 1, delay: 4.5 }}
-          >
-            <motion.h2 
-              className="text-4xl md:text-6xl font-serif font-bold mb-4"
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 1, delay: 4.8 }}
-            >
-              Quadplex 80
-            </motion.h2>
-            <motion.p 
-              className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto px-6"
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 1, delay: 5.2 }}
-            >
-              A sanctuary above the clouds where luxury meets tranquility
-            </motion.p>
-          </motion.div>
 
-          {/* Navigation Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ 
-              opacity: experienceReady ? 1 : 0, 
-              y: experienceReady ? 0 : 50 
-            }}
-            transition={{ duration: 1, delay: 0.5 }}
-            className="absolute inset-x-0 bottom-16 z-20"
-          >
-            <div className="container max-w-4xl mx-auto px-6">
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1 }}
-                className="text-center mb-8"
-              >
-                <h3 className="text-2xl md:text-3xl font-serif text-white mb-2">
-                  Choose Your Experience
-                </h3>
-                <p className="text-white/70">
-                  Discover your perfect space in the clouds
-                </p>
-              </motion.div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <motion.div
-                  initial={{ opacity: 0, x: -50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.8, delay: 1.2 }}
-                >
-                  <Link 
-                    to="/residential" 
-                    className="group block rounded-2xl border border-white/20 bg-white/10 backdrop-blur-md p-8 hover:bg-white/20 transition-all duration-300 hover:scale-105 hover:border-white/40"
-                  >
-                    <div className="text-center">
-                      <h4 className="text-2xl md:text-3xl font-serif text-white mb-3">
-                        Residential
-                      </h4>
-                      <p className="text-white/80 mb-6">
-                        Private sanctuaries designed for elevated living
-                      </p>
-                      <div className="inline-flex items-center text-white/90 group-hover:text-white transition-colors">
-                        <span className="mr-2">Explore Homes</span>
-                        <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                        </svg>
-                      </div>
-                    </div>
-                  </Link>
-                </motion.div>
 
-                <motion.div
-                  initial={{ opacity: 0, x: 50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.8, delay: 1.4 }}
-                >
-                  <Link 
-                    to="/commercial" 
-                    className="group block rounded-2xl border border-white/20 bg-white/10 backdrop-blur-md p-8 hover:bg-white/20 transition-all duration-300 hover:scale-105 hover:border-white/40"
-                  >
-                    <div className="text-center">
-                      <h4 className="text-2xl md:text-3xl font-serif text-white mb-3">
-                        Commercial
-                      </h4>
-                      <p className="text-white/80 mb-6">
-                        Premium business spaces with inspiring views
-                      </p>
-                      <div className="inline-flex items-center text-white/90 group-hover:text-white transition-colors">
-                        <span className="mr-2">Explore Spaces</span>
-                        <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                        </svg>
-                      </div>
-                    </div>
-                  </Link>
-                </motion.div>
-              </div>
 
-              {/* Close experience button */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 2 }}
-                className="text-center mt-8"
-              >
-                <button
-                  onClick={() => setPlayingExperience(false)}
-                  className="text-white/60 hover:text-white/80 transition-colors text-sm"
-                >
-                  Close Experience
-                </button>
-              </motion.div>
-            </div>
-          </motion.div>
+
         </motion.div>
       )}
     </main>
