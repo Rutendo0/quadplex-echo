@@ -23,8 +23,10 @@ const App = () => (
           <Switch>
             <Route path="/" component={Index} />
             <Route path="/residential" component={Residential} />
+            <Route path="/residential/:type/:subtype" component={ResidentialDetail} />
             <Route path="/residential/:type" component={ResidentialDetail} />
             <Route path="/commercial" component={Commercial} />
+            <Route path="/commercial/:type/:subtype" component={CommercialDetail} />
             <Route path="/commercial/:type" component={CommercialDetail} />
             <Route component={NotFound} />
           </Switch>

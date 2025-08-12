@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet-async";
 import { useRoute, Link } from "wouter";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Home, MapPin, Bed, Bath, Car, Eye, FileText } from "lucide-react";
 import heroImage from "@/assets/clouds-hero.jpg";
 import { Button } from "@/components/ui/button";
@@ -340,6 +340,7 @@ const PropertyCard = ({ property, index, onViewFloorPlan }) => {
 
 // Image Gallery Modal Component
 const ImageGalleryModal = ({ property, isOpen, onClose }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [currentTab, setCurrentTab] = useState("exterior");
 
   const exteriorImages = property.exteriorImages;
