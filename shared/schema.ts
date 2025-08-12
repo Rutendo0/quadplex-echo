@@ -40,6 +40,23 @@ export const inquiries = pgTable("inquiries", {
   createdAt: text("created_at").notNull().default(new Date().toISOString()),
 });
 
+// Property bookings and reservations
+export const bookings = pgTable("bookings", {
+  id: serial("id").primaryKey(),
+  propertyId: integer("property_id").notNull().references(() => properties.id),
+  customerName: text("customer_name").notNull(),
+  customerEmail: text("customer_email").notNull(),
+  customerPhone: text("customer_phone").notNull(),
+  bookingType: text("booking_type").notNull(), // reservation, purchase
+  depositAmount: integer("deposit_amount").notNull(), // in cents
+  totalPrice: integer("total_price").notNull(), // in cents
+  paymentPlan: json("payment_plan"), // payment schedule details
+  status: text("status").notNull().default("pending"), // pending, confirmed, cancelled
+  stripePaymentIntentId: text("stripe_payment_intent_id"),
+  createdAt: text("created_at").notNull().default(new Date().toISOString()),
+  updatedAt: text("updated_at").notNull().default(new Date().toISOString()),
+});
+
 export const insertUserSchema = createInsertSchema(users).pick({
   username: true,
   password: true,
@@ -54,12 +71,20 @@ export const insertInquirySchema = createInsertSchema(inquiries).omit({
   createdAt: true,
 });
 
+export const insertBookingSchema = createInsertSchema(bookings).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
 export type Property = typeof properties.$inferSelect;
 export type InsertProperty = z.infer<typeof insertPropertySchema>;
 export type Inquiry = typeof inquiries.$inferSelect;
 export type InsertInquiry = z.infer<typeof insertInquirySchema>;
+export type Booking = typeof bookings.$inferSelect;
+export type InsertBooking = z.infer<typeof insertBookingSchema>;
 
 // Property type definitions for the hierarchical structure
 export const PROPERTY_STRUCTURE = {

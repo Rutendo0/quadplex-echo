@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertUserSchema, insertPropertySchema, insertInquirySchema } from "@shared/schema";
+import { insertUserSchema, insertPropertySchema, insertInquirySchema, insertBookingSchema } from "@shared/schema";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Property structure route
@@ -97,6 +97,63 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error: any) {
       res.status(500).json({ error: error.message });
     }
+  });
+
+  // Booking routes for ecommerce functionality
+  app.post("/api/bookings", async (req, res) => {
+    try {
+      const validatedData = insertBookingSchema.parse(req.body);
+      const booking = await storage.createBooking(validatedData);
+      res.status(201).json(booking);
+    } catch (error: any) {
+      res.status(400).json({ error: error.message });
+    }
+  });
+
+  app.get("/api/bookings", async (req, res) => {
+    try {
+      const { propertyId } = req.query;
+      const bookings = await storage.getBookings(
+        propertyId ? parseInt(propertyId as string) : undefined
+      );
+      res.json(bookings);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  app.get("/api/bookings/:id", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const booking = await storage.getBookingById(id);
+      if (!booking) {
+        return res.status(404).json({ error: "Booking not found" });
+      }
+      res.json(booking);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  app.put("/api/bookings/:id", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const updates = req.body;
+      const updatedBooking = await storage.updateBooking(id, updates);
+      if (!updatedBooking) {
+        return res.status(404).json({ error: "Booking not found" });
+      }
+      res.json(updatedBooking);
+    } catch (error: any) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Placeholder for future Stripe integration
+  app.post("/api/create-payment-intent", async (req, res) => {
+    res.status(501).json({ 
+      error: "Payment integration not configured. Stripe API keys needed." 
+    });
   });
 
   const httpServer = createServer(app);

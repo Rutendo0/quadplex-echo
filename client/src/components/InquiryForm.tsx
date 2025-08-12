@@ -6,10 +6,11 @@ import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 
 interface InquiryFormProps {
-  propertyName: string;
+  propertyName?: string;
+  propertyId?: number;
 }
 
-export const InquiryForm = ({ propertyName }: InquiryFormProps) => {
+export const InquiryForm = ({ propertyName = "this property", propertyId }: InquiryFormProps) => {
   const [submitting, setSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
