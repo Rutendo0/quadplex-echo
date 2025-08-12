@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import heroImage from "@/assets/clouds-hero.jpg";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import { Link } from "wouter";
 import { motion } from "framer-motion";
 const Commercial = () => {
   const canonical = typeof window !== 'undefined' ? window.location.href : 'https://quadplex80.com/commercial';

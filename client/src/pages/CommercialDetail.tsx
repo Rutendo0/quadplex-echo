@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { useMemo } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link } from "wouter";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/clouds-hero.jpg";
