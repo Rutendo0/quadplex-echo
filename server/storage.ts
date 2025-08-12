@@ -76,7 +76,13 @@ export class MemStorage implements IStorage {
       id,
       status: propertyData.status || "available",
       subtype: propertyData.subtype || null,
-      shortDescription: propertyData.shortDescription || null
+      shortDescription: propertyData.shortDescription || null,
+      exteriorImages: propertyData.exteriorImages || [],
+      interiorImages: propertyData.interiorImages || [],
+      interiorVideos: propertyData.interiorVideos || [],
+      floorPlanImages: propertyData.floorPlanImages || [],
+      features: propertyData.features || [],
+      specifications: propertyData.specifications || {}
     };
     this.properties.set(id, property);
     return property;
@@ -147,7 +153,12 @@ export class MemStorage implements IStorage {
       shortDescription: "Contemporary 3-bedroom single-storey home with modern finishes",
       price: "$170,000",
       status: "available",
-      exteriorImages: ["/api/placeholder/800/600", "/api/placeholder/800/600", "/api/placeholder/800/600"],
+      exteriorImages: [
+        "/properties/4-bedroom-single-story/single-story-a01-1.png",
+        "/properties/4-bedroom-single-story/single-story-a01-2.png",
+        "/properties/4-bedroom-single-story/single-story-a01-3.png",
+        "/properties/4-bedroom-single-story/single-story-exterior-1.png"
+      ],
       interiorImages: ["/api/placeholder/600/400", "/api/placeholder/600/400", "/api/placeholder/600/400", "/api/placeholder/600/400"],
       floorPlanImages: ["/api/placeholder/800/600"],
       interiorVideos: [],
@@ -159,11 +170,7 @@ export class MemStorage implements IStorage {
         garage: 2,
         features: ["Master bedroom with walk-in robe and ensuite", "Two additional bedrooms with built-ins", "Open-plan kitchen, dining, and living", "Main bathroom with bath and shower", "Separate laundry", "Double garage with internal access", "Covered outdoor entertaining area"]
       },
-      specifications: { buildYear: 2024, lotSize: "400 sqm", floorArea: "145 sqm" },
-      totalUnits: 10,
-      availableUnits: 8,
-      ownershipType: "sale",
-      salePrice: 170000
+      specifications: { buildYear: 2024, lotSize: "400 sqm", floorArea: "145 sqm" }
     });
 
     // 4-Bed Double-Storey Homes (26 units, $170,000 each)
@@ -176,7 +183,13 @@ export class MemStorage implements IStorage {
       shortDescription: "Spacious 4-bedroom double-storey family home",
       price: "$170,000",
       status: "available",
-      exteriorImages: ["/api/placeholder/800/600", "/api/placeholder/800/600"],
+      exteriorImages: [
+        "/properties/4-bedroom-double-story/exterior-view-1.png",
+        "/properties/4-bedroom-double-story/exterior-view-2.png", 
+        "/properties/4-bedroom-double-story/street-view.png",
+        "/properties/4-bedroom-double-story/aerial-view.png",
+        "/properties/4-bedroom-double-story/front-view-units.png"
+      ],
       interiorImages: ["/api/placeholder/600/400", "/api/placeholder/600/400", "/api/placeholder/600/400", "/api/placeholder/600/400"],
       floorPlanImages: ["/api/placeholder/800/600", "/api/placeholder/800/600"],
       interiorVideos: [],
@@ -188,11 +201,7 @@ export class MemStorage implements IStorage {
         garage: 2,
         features: ["Ground floor: Open-plan kitchen, dining, living", "Ground floor: Powder room and laundry", "Upper level: Master bedroom with ensuite and walk-in robe", "Upper level: 3 additional bedrooms with built-ins", "Upper level: Main bathroom with bath", "Double garage with storage", "Outdoor entertaining area"]
       },
-      specifications: { buildYear: 2024, lotSize: "450 sqm", floorArea: "185 sqm" },
-      totalUnits: 26,
-      availableUnits: 22,
-      ownershipType: "sale",
-      salePrice: 170000
+      specifications: { buildYear: 2024, lotSize: "450 sqm", floorArea: "185 sqm" }
     });
 
     // 3-Bed Single-Storey Duplexes (20 units, $150,000 each)
@@ -205,7 +214,10 @@ export class MemStorage implements IStorage {
       shortDescription: "Contemporary 3-bedroom duplex with private outdoor space",
       price: "$150,000",
       status: "available",
-      exteriorImages: ["/api/placeholder/800/600", "/api/placeholder/800/600"],
+      exteriorImages: [
+        "/properties/4-bedroom-single-story/single-story-exterior-2.png",
+        "/properties/4-bedroom-single-story/single-story-exterior-3.png"
+      ],
       interiorImages: ["/api/placeholder/600/400", "/api/placeholder/600/400", "/api/placeholder/600/400"],
       floorPlanImages: ["/api/placeholder/800/600"],
       interiorVideos: [],
@@ -217,11 +229,7 @@ export class MemStorage implements IStorage {
         garage: 1,
         features: ["Master bedroom with ensuite", "Two additional bedrooms with built-ins", "Open-plan kitchen, dining, living", "Main bathroom", "Separate laundry", "Single garage", "Private rear courtyard", "Front porch area"]
       },
-      specifications: { buildYear: 2024, lotSize: "250 sqm", floorArea: "125 sqm" },
-      totalUnits: 20,
-      availableUnits: 17,
-      ownershipType: "sale",
-      salePrice: 150000
+      specifications: { buildYear: 2024, lotSize: "250 sqm", floorArea: "125 sqm" }
     });
 
     // 3-Bed Double-Storey Duplexes (36 units, $220,000 each)
@@ -234,7 +242,14 @@ export class MemStorage implements IStorage {
       shortDescription: "Stylish 3-bedroom double-storey duplex with elevated living",
       price: "$220,000",
       status: "available",
-      exteriorImages: ["/api/placeholder/800/600", "/api/placeholder/800/600"],
+      exteriorImages: [
+        "/properties/3-bedroom-double-story/duplex-front-view.png",
+        "/properties/3-bedroom-double-story/aerial-view.png",
+        "/properties/3-bedroom-double-story/exterior-view-1.png",
+        "/properties/3-bedroom-double-story/exterior-view-2.png",
+        "/properties/3-bedroom-double-story/street-view-1.png",
+        "/properties/3-bedroom-double-story/street-view-2.png"
+      ],
       interiorImages: ["/api/placeholder/600/400", "/api/placeholder/600/400", "/api/placeholder/600/400"],
       floorPlanImages: ["/api/placeholder/800/600", "/api/placeholder/800/600"],
       interiorVideos: [],
@@ -246,11 +261,7 @@ export class MemStorage implements IStorage {
         garage: 1,
         features: ["Ground floor: Open-plan kitchen, dining, living", "Ground floor: Powder room and laundry", "Upper level: Master bedroom with ensuite", "Upper level: 2 additional bedrooms with built-ins", "Upper level: Main bathroom", "Single garage with storage", "Small rear courtyard"]
       },
-      specifications: { buildYear: 2024, lotSize: "280 sqm", floorArea: "155 sqm" },
-      totalUnits: 36,
-      availableUnits: 31,
-      ownershipType: "sale",
-      salePrice: 220000
+      specifications: { buildYear: 2024, lotSize: "280 sqm", floorArea: "155 sqm" }
     });
 
     // Ground-Floor Studios (252 units total across 18 blocks, Rental)
@@ -275,11 +286,7 @@ export class MemStorage implements IStorage {
         garage: 0,
         features: ["Open-plan living and sleeping area", "Compact kitchen with quality appliances", "Full bathroom with shower", "Built-in wardrobes", "Private courtyard access", "Shared laundry facilities"]
       },
-      specifications: { buildYear: 2024, lotSize: "N/A", floorArea: "35 sqm" },
-      totalUnits: 252,
-      availableUnits: 180,
-      ownershipType: "rental",
-      rentalPrice: 320
+      specifications: { buildYear: 2024, lotSize: "N/A", floorArea: "35 sqm" }
     });
 
     // First-Floor 1-Bedrooms (144 units total across 18 blocks, Rental)
@@ -304,11 +311,7 @@ export class MemStorage implements IStorage {
         garage: 0,
         features: ["Separate bedroom with built-in wardrobes", "Open-plan kitchen and living area", "Full bathroom with shower", "Private balcony", "Internal laundry", "Secure building entry with lift access"]
       },
-      specifications: { buildYear: 2024, lotSize: "N/A", floorArea: "55 sqm" },
-      totalUnits: 144,
-      availableUnits: 98,
-      ownershipType: "rental",
-      rentalPrice: 420
+      specifications: { buildYear: 2024, lotSize: "N/A", floorArea: "55 sqm" }
     });
 
     // Second-Floor 2-3 Bedrooms (72 units total across 18 blocks, Sale - $120,000)
@@ -333,11 +336,7 @@ export class MemStorage implements IStorage {
         garage: 1,
         features: ["Master bedroom with ensuite", "Second bedroom with built-ins", "Open-plan living and dining", "Modern kitchen with stone benchtops", "Main bathroom", "Private balcony with views", "Secure parking space"]
       },
-      specifications: { buildYear: 2024, lotSize: "N/A", floorArea: "75 sqm" },
-      totalUnits: 72,
-      availableUnits: 45,
-      ownershipType: "sale",
-      salePrice: 120000
+      specifications: { buildYear: 2024, lotSize: "N/A", floorArea: "75 sqm" }
     });
   }
 
@@ -347,6 +346,8 @@ export class MemStorage implements IStorage {
     const booking: Booking = {
       ...bookingData,
       id,
+      status: bookingData.status || "pending",
+      stripePaymentIntentId: bookingData.stripePaymentIntentId || null,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     };

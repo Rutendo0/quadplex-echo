@@ -8,7 +8,7 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Residential from "./pages/Residential";
 import Commercial from "./pages/Commercial";
-import ResidentialDetailNew from "./pages/ResidentialDetailNew";
+import PropertyGallery from "./pages/PropertyGallery";
 import CommercialDetail from "./pages/CommercialDetail";
 import FloorPlans from "./pages/FloorPlans";
 import SingleStoreyFloorPlans from "./pages/SingleStoreyFloorPlans";
@@ -27,8 +27,8 @@ const App = () => (
           <Switch>
             <Route path="/" component={Index} />
             <Route path="/residential" component={Residential} />
-            <Route path="/residential/:type/:subtype" component={ResidentialDetailNew} />
-            <Route path="/residential/:type" component={ResidentialDetailNew} />
+            <Route path="/residential/:type/:subtype" component={PropertyGallery} />
+            <Route path="/residential/:type" component={PropertyGallery} />
             <Route path="/commercial" component={Commercial} />
             <Route path="/commercial/:type/:subtype" component={CommercialDetail} />
             <Route path="/commercial/:type" component={CommercialDetail} />
