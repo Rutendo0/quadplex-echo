@@ -145,14 +145,14 @@ export class MemStorage implements IStorage {
   }
 
   private async initializeRealPropertyData() {
-    // Real Property Data - 3-Bed Single-Storey Homes (10 units, $170,000 each)
+    // Real Property Data - 4-Bed Single-Storey Homes (10 units, $170,000 each)
     await this.createProperty({
       category: "residential",
       type: "single-storey", 
-      subtype: "3-bed",
-      name: "3-Bedroom Single-Storey Home",
-      description: "Discover exceptional single-storey living in these beautifully designed 3-bedroom homes above the clouds. Each residence features contemporary architecture, open-plan living spaces, and premium finishes throughout. Perfect for families seeking comfort, style, and functionality in a prestigious location.",
-      shortDescription: "Contemporary 3-bedroom single-storey home with modern finishes",
+      subtype: "4-bed",
+      name: "4-Bedroom Single-Storey Home",
+      description: "Discover exceptional single-storey living in these beautifully designed 4-bedroom homes above the clouds. Each residence features contemporary architecture, open-plan living spaces, and premium finishes throughout. Perfect for families seeking comfort, style, and functionality in a prestigious location.",
+      shortDescription: "Contemporary 4-bedroom single-storey home with modern finishes",
       price: "$170,000",
       status: "available",
       exteriorImages: [
@@ -172,7 +172,7 @@ export class MemStorage implements IStorage {
       features: ["Open-plan living", "Modern kitchen with stone benchtops", "Master bedroom with ensuite", "Built-in wardrobes", "Outdoor entertaining area", "Double garage", "Energy-efficient appliances", "Split-system air conditioning"],
       floorPlanDetails: {
         totalArea: "145 sqm",
-        bedrooms: 3,
+        bedrooms: 4,
         bathrooms: 2,
         garage: 2,
         features: ["Master bedroom with walk-in robe and ensuite", "Two additional bedrooms with built-ins", "Open-plan kitchen, dining, and living", "Main bathroom with bath and shower", "Separate laundry", "Double garage with internal access", "Covered outdoor entertaining area"]
@@ -183,7 +183,7 @@ export class MemStorage implements IStorage {
     // 4-Bed Double-Storey Homes (26 units, $170,000 each)
     await this.createProperty({
       category: "residential",
-      type: "double-storey",
+      type: "double-storey-duplex",
       subtype: "4-bed", 
       name: "4-Bedroom Double-Storey Home",
       description: "Experience elevated family living in these stunning 4-bedroom double-storey homes. Designed with modern families in mind, these residences offer spacious living areas across two levels, premium finishes, and spectacular views. The ground floor features open-plan living and entertaining spaces, while the upper level provides private bedroom retreats.",
