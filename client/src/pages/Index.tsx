@@ -169,46 +169,43 @@ const Index = () => {
           animate={{ opacity: 1 }} 
           className="fixed inset-0 z-50 bg-black overflow-hidden"
         >
-          {/* Cloud to Community Transition */}
+          {/* Seamless Cloud to Community Transition */}
           <motion.div
             className="absolute inset-0"
-            initial={{ scale: 1.2, opacity: 1 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 3, ease: "easeInOut" }}
+            initial={{ scale: 1.2 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 4, ease: "easeInOut" }}
           >
-            {/* Initial clouds view */}
+            {/* Community aerial view - Base layer */}
+            <div 
+              className="absolute inset-0 h-full w-full bg-cover bg-center"
+              style={{
+                backgroundImage: "url(https://planning-org-uploaded-media.s3.amazonaws.com/image/9fab9700-599b-4e60-82dc-42f1fbea185dCluster-Residential-Community.jpg)",
+                filter: "brightness(1.0) contrast(1.1) saturate(1.0)"
+              }}
+            />
+
+            {/* Clouds overlay that fades out seamlessly */}
             <motion.div
               className="absolute inset-0"
               initial={{ opacity: 1 }}
               animate={{ opacity: 0 }}
-              transition={{ duration: 2, delay: 1 }}
+              transition={{ duration: 2.5, delay: 1, ease: "easeInOut" }}
             >
               <div 
                 className="h-full w-full bg-cover bg-center"
                 style={{
                   backgroundImage: `url(${heroImage})`,
-                  filter: "brightness(0.8) contrast(1.1) saturate(0.9)"
+                  filter: "brightness(0.9) contrast(1.1) saturate(0.9)",
+                  mixBlendMode: "normal"
                 }}
               />
-              <div className="absolute inset-0 bg-gradient-to-b from-sky-300/20 via-blue-200/10 to-transparent" />
+              {/* Gradient to blend clouds naturally into community */}
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/10 to-transparent" />
             </motion.div>
 
-            {/* Community aerial view reveal */}
-            <motion.div
-              className="absolute inset-0"
-              initial={{ opacity: 0, y: "20vh" }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 2, delay: 2, ease: "easeOut" }}
-            >
-              <div 
-                className="h-full w-full bg-cover bg-center"
-                style={{
-                  backgroundImage: "url(https://planning-org-uploaded-media.s3.amazonaws.com/image/9fab9700-599b-4e60-82dc-42f1fbea185dCluster-Residential-Community.jpg)",
-                  filter: "brightness(1.0) contrast(1.1) saturate(1.0)"
-                }}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-            </motion.div>
+            {/* Final overlay for depth */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-sky-100/20" />
           </motion.div>
 
           {/* Beautiful Centered Navigation Buttons */}
