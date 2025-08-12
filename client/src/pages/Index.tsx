@@ -112,157 +112,123 @@ const Index = () => {
           animate={{ opacity: 1 }} 
           className="fixed inset-0 z-50 bg-black"
         >
-          {/* Sky/Clouds Scene with zoom effect */}
+          {/* Sky/Clouds Scene - disappears after 3 seconds */}
           <motion.div
-            className="absolute inset-0"
-            initial={{ scale: 1.5, y: 0 }}
-            animate={{ scale: 1, y: 0 }}
-            transition={{ duration: 2, ease: "easeOut" }}
+            className="absolute inset-0 z-10"
+            initial={{ scale: 1.2, y: 0, opacity: 1 }}
+            animate={{ 
+              scale: 1, 
+              y: 0, 
+              opacity: [1, 1, 1, 0] 
+            }}
+            transition={{ 
+              duration: 3, 
+              times: [0, 0.7, 0.9, 1],
+              ease: "easeOut" 
+            }}
           >
             <img
               src={heroImage}
               alt="Sky view from above clouds"
-              className="h-full w-full object-cover filter blur-sm"
+              className="h-full w-full object-cover filter blur-sm brightness-75"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-blue-400/30 via-blue-300/20 to-transparent" />
-            {/* Add moving cloud shadows */}
-            <motion.div
-              className="absolute inset-0"
-              animate={{ 
-                background: [
-                  "radial-gradient(ellipse 800px 400px at 20% 30%, rgba(255,255,255,0.1) 0%, transparent 50%)",
-                  "radial-gradient(ellipse 800px 400px at 80% 70%, rgba(255,255,255,0.1) 0%, transparent 50%)",
-                  "radial-gradient(ellipse 800px 400px at 20% 30%, rgba(255,255,255,0.1) 0%, transparent 50%)"
-                ]
-              }}
-              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-            />
+            <div className="absolute inset-0 bg-gradient-to-b from-blue-400/40 via-blue-300/30 to-blue-200/20" />
           </motion.div>
 
-          {/* Flying Birds Animation */}
-          <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            {[0, 1, 2, 3, 4, 5, 6].map((i) => (
+          {/* Community Area - appears after 3 seconds */}
+          <motion.div
+            className="absolute inset-0 z-20"
+            initial={{ y: "100vh", opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 2, delay: 3, ease: "easeOut" }}
+          >
+            <img
+              src={heroImage}
+              alt="Community area aerial view"
+              className="h-full w-full object-cover brightness-110 contrast-110"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+            
+            {/* Community zone markers */}
+            <div className="absolute inset-0">
+              {[
+                { x: 25, y: 35, size: 8, label: "Residential Zone" },
+                { x: 65, y: 30, size: 12, label: "Commercial Hub" },
+                { x: 45, y: 55, size: 6, label: "Recreation" },
+                { x: 35, y: 70, size: 4, label: "Gardens" },
+                { x: 55, y: 75, size: 5, label: "Amenities" }
+              ].map((area, i) => (
+                <motion.div
+                  key={i}
+                  className="absolute flex items-center justify-center"
+                  style={{ 
+                    left: `${area.x}%`, 
+                    top: `${area.y}%`,
+                    width: `${area.size}%`,
+                    height: `${area.size * 0.6}%`
+                  }}
+                  initial={{ opacity: 0, scale: 0 }}
+                  animate={{ opacity: 0.8, scale: 1 }}
+                  transition={{ delay: 4.5 + i * 0.2, duration: 0.5 }}
+                >
+                  <div className="w-full h-full bg-white/25 border border-white/50 rounded-lg backdrop-blur-sm flex items-center justify-center">
+                    <div className="w-2 h-2 bg-white/90 rounded-full animate-pulse" />
+                  </div>
+                  <motion.div
+                    className="absolute -top-8 left-1/2 transform -translate-x-1/2 text-white/90 text-xs font-medium whitespace-nowrap bg-black/60 px-2 py-1 rounded"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 5 + i * 0.2 }}
+                  >
+                    {area.label}
+                  </motion.div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Flying Birds Animation - over both scenes */}
+          <div className="absolute inset-0 pointer-events-none overflow-hidden z-30">
+            {[0, 1, 2, 3, 4, 5].map((i) => (
               <motion.div
                 key={i}
                 className="absolute"
                 initial={{ 
                   x: -100, 
-                  y: `${15 + i * 12}%`,
-                  scale: 0.3,
+                  y: `${20 + i * 15}%`,
+                  scale: 0.4,
                   opacity: 0
                 }}
                 animate={{ 
                   x: "110vw",
-                  y: [`${15 + i * 12}%`, `${10 + i * 12}%`, `${20 + i * 12}%`, `${15 + i * 12}%`],
-                  scale: [0.3, 0.8, 1, 0.6],
-                  opacity: [0, 1, 0.8, 0],
-                  rotate: [0, -5, 5, 0]
+                  y: [`${20 + i * 15}%`, `${15 + i * 15}%`, `${25 + i * 15}%`],
+                  scale: [0.4, 0.8, 0.5],
+                  opacity: [0, 1, 0.7, 0],
+                  rotate: [0, -3, 3, 0]
                 }}
                 transition={{ 
-                  duration: 10 + i * 0.7, 
-                  delay: 0.5 + i * 0.4,
+                  duration: 8 + i * 0.5, 
+                  delay: 0.5 + i * 0.3,
                   ease: "easeInOut"
                 }}
               >
-                <svg width="32" height="20" viewBox="0 0 32 20" className="text-white/80">
+                <svg width="24" height="16" viewBox="0 0 24 16" className="text-white/70">
                   <path
-                    d="M2 10c3-3 8-8 14-8s11 5 14 8c-3 3-8 8-14 8s-11-5-14-8z"
+                    d="M2 8c3-3 6-6 10-6s7 3 10 6c-3 3-6 6-10 6s-7-3-10-6z"
                     fill="none"
                     stroke="currentColor"
-                    strokeWidth="1.5"
+                    strokeWidth="1"
                     strokeLinecap="round"
                   />
                   <path
-                    d="M8 10l8-4 8 4-8 4-8-4z"
+                    d="M8 8l4-2 4 2-4 2-4-2z"
                     fill="currentColor"
                     opacity="0.4"
-                  />
-                  <path
-                    d="M12 8l4-2 4 2v4l-4 2-4-2v-4z"
-                    fill="currentColor"
-                    opacity="0.2"
                   />
                 </svg>
               </motion.div>
             ))}
           </div>
-
-          {/* Descent Animation - Cinematic zoom down effect */}
-          <motion.div
-            className="absolute inset-0 overflow-hidden"
-            initial={{ scale: 1, y: 0, opacity: 1 }}
-            animate={{ scale: 2.5, y: "150vh", opacity: 0 }}
-            transition={{ duration: 2.5, delay: 1.5, ease: "easeInOut" }}
-          >
-            <div className="h-full w-full bg-gradient-to-b from-blue-300/40 via-blue-200/30 to-green-100/20" />
-            {/* Cloud layers for depth */}
-            <motion.div
-              className="absolute inset-0 bg-white/20"
-              initial={{ opacity: 0.8 }}
-              animate={{ opacity: 0 }}
-              transition={{ duration: 1.5, delay: 2 }}
-              style={{
-                background: "radial-gradient(ellipse at center, rgba(255,255,255,0.3) 0%, transparent 70%)"
-              }}
-            />
-          </motion.div>
-
-          {/* Community Area Reveal with 3D perspective */}
-          <motion.div
-            className="absolute inset-0 overflow-hidden z-10"
-            initial={{ y: "100vh", opacity: 0, scale: 0.8 }}
-            animate={{ y: 0, opacity: 1, scale: 1 }}
-            transition={{ duration: 2, delay: 3.5, ease: "easeOut" }}
-          >
-            <div className="h-full w-full relative">
-              <motion.img
-                src={heroImage}
-                alt="Community area aerial view"
-                className="h-full w-full object-cover brightness-120 contrast-110 saturate-110"
-                initial={{ scale: 1.3, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 1.5, delay: 4, ease: "easeOut" }}
-              />
-              {/* 3D community layout indicators */}
-              <div className="absolute inset-0">
-                {/* Building/area markers */}
-                {[
-                  { x: 25, y: 35, size: 8, label: "Residential Zone" },
-                  { x: 65, y: 30, size: 12, label: "Commercial Hub" },
-                  { x: 45, y: 55, size: 6, label: "Recreation" },
-                  { x: 35, y: 70, size: 4, label: "Gardens" },
-                  { x: 55, y: 75, size: 5, label: "Amenities" }
-                ].map((area, i) => (
-                  <motion.div
-                    key={i}
-                    className="absolute flex items-center justify-center"
-                    style={{ 
-                      left: `${area.x}%`, 
-                      top: `${area.y}%`,
-                      width: `${area.size}%`,
-                      height: `${area.size * 0.6}%`
-                    }}
-                    initial={{ opacity: 0, scale: 0 }}
-                    animate={{ opacity: 0.7, scale: 1 }}
-                    transition={{ delay: 4 + i * 0.3, duration: 0.5 }}
-                  >
-                    <div className="w-full h-full bg-white/20 border border-white/40 rounded-lg backdrop-blur-sm flex items-center justify-center">
-                      <div className="w-2 h-2 bg-white/80 rounded-full animate-pulse" />
-                    </div>
-                    <motion.div
-                      className="absolute -top-8 left-1/2 transform -translate-x-1/2 text-white/80 text-xs font-medium whitespace-nowrap bg-black/50 px-2 py-1 rounded"
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 4.5 + i * 0.3 }}
-                    >
-                      {area.label}
-                    </motion.div>
-                  </motion.div>
-                ))}
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-            </div>
-          </motion.div>
 
           {/* Floating particles for magical effect */}
           <div className="absolute inset-0 pointer-events-none">
