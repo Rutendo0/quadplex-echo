@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet-async";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import heroImage from "@/assets/clouds-hero.jpg";
@@ -8,6 +8,9 @@ import { motion } from "framer-motion";
 const Index = () => {
   const [loading, setLoading] = useState(true);
   const [progress, setProgress] = useState(0);
+  const [playingExperience, setPlayingExperience] = useState(false);
+  const [experienceReady, setExperienceReady] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
   
 
   useEffect(() => {
@@ -26,6 +29,21 @@ const Index = () => {
     const raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
   }, [loading]);
+
+  useEffect(() => {
+    if (playingExperience && videoRef.current) {
+      try {
+        videoRef.current.currentTime = 0;
+        videoRef.current.play();
+      } catch {}
+    }
+  }, [playingExperience]);
+
+  useEffect(() => {
+    if (!playingExperience || experienceReady) return;
+    const id = setTimeout(() => setExperienceReady(true), 8000);
+    return () => clearTimeout(id);
+  }, [playingExperience, experienceReady]);
 
   const canonical = useMemo(() => (typeof window !== 'undefined' ? window.location.href : 'https://quadplex80.com'), []);
 
@@ -75,8 +93,8 @@ const Index = () => {
                 variant="hero"
                 className="h-12 px-8"
                 onClick={() => {
-                  const el = document.getElementById("experience");
-                  el?.scrollIntoView({ behavior: "smooth" });
+                  setPlayingExperience(true);
+                  setExperienceReady(false);
                 }}
                 aria-label="Enter Experience"
               >
@@ -123,6 +141,51 @@ const Index = () => {
           </div>
         </div>
       </section>
+      {playingExperience && (
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="fixed inset-0 z-50">
+          <video
+            ref={videoRef}
+            className="h-full w-full object-cover"
+            muted
+            playsInline
+            autoPlay
+            onEnded={() => setExperienceReady(true)}
+          >
+            <source src="/videos/clouds.mp4" type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-gradient-to-b from-background/10 via-background/30 to-background/60" />
+
+          <div className="pointer-events-none absolute inset-0">
+            {[0,1,2,3,4,5].map((i) => (
+              <motion.span
+                key={i}
+                className="absolute block h-1 w-4 bg-foreground/50 rounded-full"
+                style={{ top: `${10 + i * 12}%` } as React.CSSProperties}
+                initial={{ x: "-10vw", y: 0, rotate: 0, opacity: 0.6 }}
+                animate={{ x: "110vw", y: [0, -8, 0], rotate: [0, 6, -6, 0], opacity: [0.6, 1, 0.6] }}
+                transition={{ duration: 6 + i, repeat: Infinity, delay: i * 0.5, ease: "easeInOut" }}
+              />
+            ))}
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: experienceReady ? 1 : 0, y: experienceReady ? 0 : 10 }}
+            className="absolute inset-x-0 bottom-12"
+          >
+            <div className="container grid grid-cols-1 md:grid-cols-2 gap-4">
+              <Link to="/residential" className="group block rounded-lg border bg-card/70 backdrop-blur-md p-6 hover-scale">
+                <h3 className="text-2xl font-serif">Residential</h3>
+                <p className="mt-1 text-muted-foreground">Private sanctuary in the clouds.</p>
+              </Link>
+              <Link to="/commercial" className="group block rounded-lg border bg-card/70 backdrop-blur-md p-6 hover-scale">
+                <h3 className="text-2xl font-serif">Commercial</h3>
+                <p className="mt-1 text-muted-foreground">Elevated spaces for modern business.</p>
+              </Link>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
     </main>
   );
 };
