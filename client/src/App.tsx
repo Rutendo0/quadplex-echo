@@ -10,6 +10,10 @@ import Residential from "./pages/Residential";
 import Commercial from "./pages/Commercial";
 import ResidentialDetailNew from "./pages/ResidentialDetailNew";
 import CommercialDetail from "./pages/CommercialDetail";
+import FloorPlans from "./pages/FloorPlans";
+import SingleStoreyFloorPlans from "./pages/SingleStoreyFloorPlans";
+import DoubleStoreyFloorPlans from "./pages/DoubleStoreyFloorPlans";
+import FloorPlanDetail from "./pages/FloorPlanDetail";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +32,11 @@ const App = () => (
             <Route path="/commercial" component={Commercial} />
             <Route path="/commercial/:type/:subtype" component={CommercialDetail} />
             <Route path="/commercial/:type" component={CommercialDetail} />
+            <Route path="/floorplans" component={FloorPlans} />
+            <Route path="/floorplans/single-storey" component={SingleStoreyFloorPlans} />
+            <Route path="/floorplans/double-storey" component={DoubleStoreyFloorPlans} />
+            <Route path="/floorplans/single-storey/:bedrooms" component={FloorPlanDetail} />
+            <Route path="/floorplans/double-storey/:bedrooms" component={FloorPlanDetail} />
             <Route component={NotFound} />
           </Switch>
         </Router>
