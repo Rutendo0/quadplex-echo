@@ -9,6 +9,11 @@ import PaymentCalculator from "@/components/PaymentCalculator";
 import BookingModal from "@/components/BookingModal";
 import PropertyStats from "@/components/PropertyStats";
 import AmenitiesShowcase from "@/components/AmenitiesShowcase";
+import InteractivePropertyMap from "@/components/InteractivePropertyMap";
+import PropertyTypesGrid from "@/components/PropertyTypesGrid";
+import TestimonialsCarousel from "@/components/TestimonialsCarousel";
+import FloatingActionBar from "@/components/FloatingActionBar";
+import FinishPackages from "@/components/FinishPackages";
 import { Calculator, Heart, ArrowDown, Play } from "lucide-react";
 
 const Index = () => {
@@ -336,12 +341,29 @@ const Index = () => {
             </div>
           </section>
 
+          {/* Interactive Property Map */}
+          <section className="py-20 bg-gray-50">
+            <div className="container mx-auto px-6">
+              <InteractivePropertyMap />
+            </div>
+          </section>
+
+          {/* Property Types Grid */}
+          <section className="py-20 bg-white">
+            <div className="container mx-auto px-6">
+              <PropertyTypesGrid onPropertySelect={handleCalculatorOpen} />
+            </div>
+          </section>
+
           {/* Amenities Showcase */}
           <section className="py-20 bg-gray-50">
             <div className="container mx-auto px-6">
               <AmenitiesShowcase />
             </div>
           </section>
+
+          {/* Testimonials */}
+          <TestimonialsCarousel />
 
           {/* Payment Plans & Mortgage Information */}
           <section className="py-20 bg-white">
@@ -486,8 +508,25 @@ const Index = () => {
               </motion.div>
             </div>
           </section>
+
+          {/* Interior Finish Packages */}
+          <FinishPackages />
+
+          {/* Testimonials */}
+          <TestimonialsCarousel />
         </>
       )}
+
+      {/* Floating Action Bar */}
+      <FloatingActionBar 
+        onCalculatorClick={() => {
+          const sampleProperty = {
+            name: "4-Bed Double-Storey Home",
+            price: 220000
+          };
+          handleCalculatorOpen(sampleProperty);
+        }} 
+      />
     </main>
   );
 };
