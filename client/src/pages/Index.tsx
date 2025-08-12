@@ -7,7 +7,9 @@ import { motion } from "framer-motion";
 import { ASHUMI_PROPERTIES } from "@shared/schema";
 import PaymentCalculator from "@/components/PaymentCalculator";
 import BookingModal from "@/components/BookingModal";
-import { Calculator, Heart } from "lucide-react";
+import PropertyStats from "@/components/PropertyStats";
+import AmenitiesShowcase from "@/components/AmenitiesShowcase";
+import { Calculator, Heart, ArrowDown, Play } from "lucide-react";
 
 const Index = () => {
   const [loading, setLoading] = useState(true);
@@ -94,8 +96,29 @@ const Index = () => {
             Above The Clouds — Ashumi Estates
           </h1>
           <p className="mt-4 text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
-            More than a place to live—a forward-thinking community designed for quality, dignity, and independence across all life stages. 20.6 hectares with direct Gwebi River frontage and panoramic Parliament views.
+            A master-planned lifestyle precinct on 20.6 hectares featuring Gwebi River frontage, panoramic Parliament views, and homes priced accessibly with unmatched amenities and professional management.
           </p>
+          
+          {/* Key Stats Bar */}
+          <motion.div 
+            className="mt-8 flex flex-wrap justify-center gap-6 text-sm"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.8 }}
+          >
+            <div className="text-center">
+              <div className="font-bold text-xl text-blue-600">593</div>
+              <div className="text-muted-foreground">Total Units</div>
+            </div>
+            <div className="text-center">
+              <div className="font-bold text-xl text-green-600">20.6 ha</div>
+              <div className="text-muted-foreground">Master-Planned</div>
+            </div>
+            <div className="text-center">
+              <div className="font-bold text-xl text-purple-600">15%</div>
+              <div className="text-muted-foreground">Deposit Only</div>
+            </div>
+          </motion.div>
         </header>
 
         <div className="w-full max-w-md">
@@ -251,12 +274,13 @@ const Index = () => {
                     </div>
                     <h3 className="text-2xl font-serif font-bold mb-3">Residential</h3>
                     <p className="text-white/80 text-sm leading-relaxed mb-4">
-                      593 units: 3-4 bed homes, duplexes & apartments starting from $120,000
+                      593 units: Studios to 4-bed homes, duplexes & penthouses from $120,000-$220,000
                     </p>
                     <div className="text-xs text-white/60 space-y-1">
-                      <div>• 10% deposit payment plans available</div>
+                      <div>• 15% off-plan deposits available</div>
                       <div>• Direct Gwebi River frontage</div>
-                      <div>• Professional management</div>
+                      <div>• International-standard materials</div>
+                      <div>• One-year workmanship warranty</div>
                     </div>
                   </div>
                   <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/10 to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -279,12 +303,13 @@ const Index = () => {
                     </div>
                     <h3 className="text-2xl font-serif font-bold mb-3">Commercial</h3>
                     <p className="text-white/80 text-sm leading-relaxed mb-4">
-                      Retail, office suites & innovation hub with modern amenities
+                      Complete work-live-play ecosystem with integrated lifestyle amenities
                     </p>
                     <div className="text-xs text-white/60 space-y-1">
-                      <div>• On-site clinic & fuel station</div>
-                      <div>• Food court & supermarket</div>
-                      <div>• High-speed connectivity</div>
+                      <div>• Food Town curated dining</div>
+                      <div>• Innovation Hub with mentorship</div>
+                      <div>• Riverfront promenade & green power</div>
+                      <div>• Co-working spaces for entrepreneurs</div>
                     </div>
                   </div>
                   <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -299,6 +324,169 @@ const Index = () => {
 
 
         </motion.div>
+      )}
+
+      {/* Detailed Information Sections - Show after cinematic experience */}
+      {experienceReady && (
+        <>
+          {/* Property Statistics Section */}
+          <section id="detailed-info" className="py-20 bg-white">
+            <div className="container mx-auto px-6">
+              <PropertyStats />
+            </div>
+          </section>
+
+          {/* Amenities Showcase */}
+          <section className="py-20 bg-gray-50">
+            <div className="container mx-auto px-6">
+              <AmenitiesShowcase />
+            </div>
+          </section>
+
+          {/* Payment Plans & Mortgage Information */}
+          <section className="py-20 bg-white">
+            <div className="container mx-auto px-6">
+              <div className="text-center mb-16">
+                <h2 className="text-4xl font-bold text-gray-900 mb-4">Flexible Payment Options</h2>
+                <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                  Make homeownership accessible with our flexible off-plan deposits and comprehensive mortgage arrangements.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                {/* Off-Plan Payment Structure */}
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6 }}
+                  viewport={{ once: true }}
+                  className="bg-blue-50 rounded-2xl p-8"
+                >
+                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Off-Plan Payment Structure</h3>
+                  <div className="space-y-4">
+                    <div className="flex justify-between items-center p-4 bg-white rounded-lg">
+                      <span className="font-medium">Booking Deposit</span>
+                      <span className="text-blue-600 font-bold">15%</span>
+                    </div>
+                    <div className="flex justify-between items-center p-4 bg-white rounded-lg">
+                      <span className="font-medium">At Foundation</span>
+                      <span className="text-blue-600 font-bold">25%</span>
+                    </div>
+                    <div className="flex justify-between items-center p-4 bg-white rounded-lg">
+                      <span className="font-medium">At Roof Lock-up</span>
+                      <span className="text-blue-600 font-bold">30%</span>
+                    </div>
+                    <div className="flex justify-between items-center p-4 bg-white rounded-lg">
+                      <span className="font-medium">At Completion</span>
+                      <span className="text-blue-600 font-bold">30%</span>
+                    </div>
+                  </div>
+                  <div className="mt-6 p-4 bg-green-100 rounded-lg">
+                    <p className="text-sm text-green-800">
+                      <strong>Includes:</strong> One-year workmanship warranty & international-standard materials
+                    </p>
+                  </div>
+                </motion.div>
+
+                {/* Mortgage Example */}
+                <motion.div
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6 }}
+                  viewport={{ once: true }}
+                  className="bg-green-50 rounded-2xl p-8"
+                >
+                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Mortgage Example</h3>
+                  <div className="text-sm text-gray-600 mb-4">4-Bed Double-Storey House ($220,000)</div>
+                  
+                  <div className="space-y-4">
+                    <div className="flex justify-between items-center p-4 bg-white rounded-lg">
+                      <span className="font-medium">Property Price</span>
+                      <span className="text-green-600 font-bold">$220,000</span>
+                    </div>
+                    <div className="flex justify-between items-center p-4 bg-white rounded-lg">
+                      <span className="font-medium">20% Deposit</span>
+                      <span className="text-green-600 font-bold">$44,000</span>
+                    </div>
+                    <div className="flex justify-between items-center p-4 bg-white rounded-lg">
+                      <span className="font-medium">Loan Principal</span>
+                      <span className="text-green-600 font-bold">$176,000</span>
+                    </div>
+                    <div className="flex justify-between items-center p-4 bg-white rounded-lg">
+                      <span className="font-medium">Monthly Payment (12yr @ 8%)</span>
+                      <span className="text-green-600 font-bold">$2,156</span>
+                    </div>
+                  </div>
+                  
+                  <div className="mt-6 p-4 bg-blue-100 rounded-lg">
+                    <p className="text-sm text-blue-800">
+                      <strong>Available:</strong> Local USD-indexed & Diaspora arrangements (UK, Australia, USA)
+                    </p>
+                  </div>
+                </motion.div>
+              </div>
+
+              {/* Call to Action */}
+              <motion.div 
+                className="text-center mt-12"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+              >
+                <Button 
+                  size="lg" 
+                  className="bg-blue-600 hover:bg-blue-700 mr-4"
+                  onClick={() => {
+                    const sampleProperty = {
+                      name: "4-Bed Double-Storey Home",
+                      price: 220000
+                    };
+                    handleCalculatorOpen(sampleProperty);
+                  }}
+                >
+                  <Calculator className="mr-2 h-5 w-5" />
+                  Calculate Your Payment
+                </Button>
+                <Button size="lg" variant="outline" className="border-blue-600 text-blue-600">
+                  Schedule Site Visit
+                </Button>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Contact Information */}
+          <section className="py-16 bg-gray-900 text-white">
+            <div className="container mx-auto px-6 text-center">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+              >
+                <h2 className="text-3xl font-bold mb-6">Visit Us Today</h2>
+                <div className="max-w-2xl mx-auto space-y-3">
+                  <p className="text-lg">ZB Centre, 4th Floor</p>
+                  <p className="text-lg">Corner 1st Street & Kwame Nkrumah Avenue</p>
+                  <p className="text-lg">Harare, Zimbabwe</p>
+                </div>
+                
+                <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+                  <Button size="lg" className="bg-white text-gray-900 hover:bg-gray-100">
+                    info@griafrica.com
+                  </Button>
+                  <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-gray-900">
+                    www.ashumiestates.com
+                  </Button>
+                </div>
+
+                <p className="mt-8 text-gray-400">
+                  Innovation-driven solutions for the Future of Africa's Growth
+                </p>
+              </motion.div>
+            </div>
+          </section>
+        </>
       )}
     </main>
   );
