@@ -159,8 +159,13 @@ export class MemStorage implements IStorage {
         "/properties/4-bedroom-single-story/single-story-a01-3.png",
         "/properties/4-bedroom-single-story/single-story-exterior-1.png"
       ],
-      interiorImages: ["/api/placeholder/600/400", "/api/placeholder/600/400", "/api/placeholder/600/400", "/api/placeholder/600/400"],
-      floorPlanImages: ["/api/placeholder/800/600"],
+      interiorImages: [
+        "/properties/interiors/4-bedroom/master-bedroom-1.png",
+        "/properties/interiors/4-bedroom/master-bedroom-2.png",
+        "/properties/interiors/4-bedroom/kitchen-1.png",
+        "/properties/interiors/4-bedroom/kitchen-2.png"
+      ],
+      floorPlanImages: ["/properties/floorplans/4-bedroom-floorplan-3d.png"],
       interiorVideos: [],
       features: ["Open-plan living", "Modern kitchen with stone benchtops", "Master bedroom with ensuite", "Built-in wardrobes", "Outdoor entertaining area", "Double garage", "Energy-efficient appliances", "Split-system air conditioning"],
       floorPlanDetails: {
@@ -190,9 +195,20 @@ export class MemStorage implements IStorage {
         "/properties/4-bedroom-double-story/aerial-view.png",
         "/properties/4-bedroom-double-story/front-view-units.png"
       ],
-      interiorImages: ["/api/placeholder/600/400", "/api/placeholder/600/400", "/api/placeholder/600/400", "/api/placeholder/600/400"],
-      floorPlanImages: ["/api/placeholder/800/600", "/api/placeholder/800/600"],
-      interiorVideos: [],
+      interiorImages: [
+        "/properties/interiors/4-bedroom/master-bedroom-1.png",
+        "/properties/interiors/4-bedroom/master-bedroom-2.png",
+        "/properties/interiors/4-bedroom/kitchen-1.png",
+        "/properties/interiors/4-bedroom/kitchen-2.png",
+        "/properties/interiors/4-bedroom/kitchen-3.png",
+        "/properties/interiors/4-bedroom/kitchen-detail.png"
+      ],
+      floorPlanImages: ["/properties/floorplans/4-bedroom-floorplan-3d.png"],
+      interiorVideos: [
+        "/properties/videos/interior-walkthrough-1.mp4",
+        "/properties/videos/interior-walkthrough-2.mp4",
+        "/properties/videos/interior-walkthrough-3.mp4"
+      ],
       features: ["Double-storey design", "4 spacious bedrooms", "2.5 bathrooms", "Open-plan living", "Gourmet kitchen", "Outdoor entertaining", "Double garage", "Storage solutions"],
       floorPlanDetails: {
         totalArea: "185 sqm",

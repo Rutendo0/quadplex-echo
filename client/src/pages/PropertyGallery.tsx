@@ -305,21 +305,24 @@ const PropertyGallery = () => {
 
       {/* Floor Plan Modal */}
       <Dialog open={showFloorPlanModal} onOpenChange={setShowFloorPlanModal}>
-        <DialogContent className="max-w-4xl">
+        <DialogContent className="max-w-5xl max-h-[80vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle>{property.name} - Floor Plans</DialogTitle>
             <DialogDescription>
               Detailed floor plans and layout specifications
             </DialogDescription>
           </DialogHeader>
-          <div className="space-y-4">
+          
+          <div className="space-y-6">
+            {/* Floor Plan Images */}
             {property.floorPlanImages && property.floorPlanImages.length > 0 ? (
               property.floorPlanImages.map((image, index) => (
-                <div key={index} className="aspect-video bg-gray-100 rounded-lg overflow-hidden">
+                <div key={index} className="bg-gray-100 rounded-lg overflow-hidden p-4">
                   <img 
                     src={image} 
                     alt={`Floor plan ${index + 1}`}
-                    className="w-full h-full object-contain"
+                    className="w-full h-auto object-contain mx-auto max-h-96"
+                    data-testid={`img-floorplan-${index}`}
                   />
                 </div>
               ))
@@ -328,50 +331,140 @@ const PropertyGallery = () => {
                 <p className="text-gray-500">Floor plans will be available soon</p>
               </div>
             )}
-            {property.floorPlanDetails?.features && (
-              <div>
-                <h4 className="font-medium mb-2">Layout Features</h4>
-                <ul className="text-sm text-gray-600 space-y-1">
-                  {property.floorPlanDetails.features.map((feature, index) => (
-                    <li key={index} className="flex items-start">
-                      <span className="w-1 h-1 bg-gray-400 rounded-full mt-2 mr-2 flex-shrink-0"></span>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
+
+            {/* Property Layout Details */}
+            {property.floorPlanDetails && (
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <h4 className="font-semibold mb-3 text-lg">Property Specifications</h4>
+                  <div className="space-y-2">
+                    <div className="flex justify-between py-2 border-b border-gray-200">
+                      <span className="text-gray-600">Total Area</span>
+                      <span className="font-medium">{property.floorPlanDetails.totalArea}</span>
+                    </div>
+                    <div className="flex justify-between py-2 border-b border-gray-200">
+                      <span className="text-gray-600">Bedrooms</span>
+                      <span className="font-medium">{property.floorPlanDetails.bedrooms}</span>
+                    </div>
+                    <div className="flex justify-between py-2 border-b border-gray-200">
+                      <span className="text-gray-600">Bathrooms</span>
+                      <span className="font-medium">{property.floorPlanDetails.bathrooms}</span>
+                    </div>
+                    <div className="flex justify-between py-2 border-b border-gray-200">
+                      <span className="text-gray-600">Garage</span>
+                      <span className="font-medium">{property.floorPlanDetails.garage} car</span>
+                    </div>
+                  </div>
+                </div>
+
+                {property.floorPlanDetails.features && (
+                  <div>
+                    <h4 className="font-semibold mb-3 text-lg">Layout Features</h4>
+                    <ul className="space-y-2">
+                      {property.floorPlanDetails.features.map((feature, index) => (
+                        <li key={index} className="flex items-start text-sm text-gray-700">
+                          <div className="w-2 h-2 bg-green-500 rounded-full mt-1.5 mr-3 flex-shrink-0"></div>
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </div>
             )}
+
+            {/* Navigation Buttons */}
+            <div className="flex justify-center gap-4 pt-4 border-t">
+              <Button 
+                onClick={() => {
+                  setShowFloorPlanModal(false);
+                  setShowInteriorModal(true);
+                }}
+                className="bg-green-600 hover:bg-green-700"
+                data-testid="button-view-interior-from-floorplan"
+              >
+                <Eye className="h-4 w-4 mr-2" />
+                View Interior
+              </Button>
+              <Button 
+                onClick={() => setShowFloorPlanModal(false)}
+                variant="outline"
+                data-testid="button-back-to-property-from-floorplan"
+              >
+                Back to Property View
+              </Button>
+            </div>
           </div>
         </DialogContent>
       </Dialog>
 
       {/* Interior Views Modal */}
       <Dialog open={showInteriorModal} onOpenChange={setShowInteriorModal}>
-        <DialogContent className="max-w-4xl">
+        <DialogContent className="max-w-6xl max-h-[80vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle>{property.name} - Interior Views</DialogTitle>
             <DialogDescription>
-              Interior design and living spaces
+              Interior design and living spaces with videos and detailed views
             </DialogDescription>
           </DialogHeader>
-          <div className="space-y-4">
-            {property.interiorImages && property.interiorImages.length > 0 ? (
-              <div className="grid grid-cols-2 gap-4">
-                {property.interiorImages.map((image, index) => (
-                  <div key={index} className="aspect-video bg-gray-100 rounded-lg overflow-hidden">
-                    <img 
-                      src={image} 
-                      alt={`Interior view ${index + 1}`}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div className="aspect-video bg-gray-100 rounded-lg flex items-center justify-center">
-                <p className="text-gray-500">Interior images will be available soon</p>
+          
+          <div className="space-y-6">
+            {/* Interior Images */}
+            {property.interiorImages && property.interiorImages.length > 0 && (
+              <div>
+                <h4 className="text-lg font-semibold mb-4">Interior Images</h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {property.interiorImages.map((image, index) => (
+                    <div key={index} className="aspect-video bg-gray-100 rounded-lg overflow-hidden">
+                      <img 
+                        src={image} 
+                        alt={`Interior view ${index + 1}`}
+                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                      />
+                    </div>
+                  ))}
+                </div>
               </div>
             )}
+
+            {/* Interior Videos */}
+            {property.interiorVideos && property.interiorVideos.length > 0 && (
+              <div>
+                <h4 className="text-lg font-semibold mb-4">Interior Video Tours</h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {property.interiorVideos.map((video, index) => (
+                    <div key={index} className="aspect-video bg-gray-100 rounded-lg overflow-hidden">
+                      <video 
+                        controls
+                        className="w-full h-full object-cover"
+                        data-testid={`video-interior-${index}`}
+                      >
+                        <source src={video} type="video/mp4" />
+                        Your browser does not support the video tag.
+                      </video>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {(!property.interiorImages || property.interiorImages.length === 0) && 
+             (!property.interiorVideos || property.interiorVideos.length === 0) && (
+              <div className="aspect-video bg-gray-100 rounded-lg flex items-center justify-center">
+                <p className="text-gray-500">Interior media will be available soon</p>
+              </div>
+            )}
+
+            {/* Back to Property Button */}
+            <div className="flex justify-center pt-4 border-t">
+              <Button 
+                onClick={() => setShowInteriorModal(false)}
+                variant="outline"
+                data-testid="button-back-to-property"
+              >
+                Back to Property View
+              </Button>
+            </div>
           </div>
         </DialogContent>
       </Dialog>
