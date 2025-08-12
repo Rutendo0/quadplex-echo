@@ -190,9 +190,9 @@ const Index = () => {
           {/* Descent Animation - Cinematic zoom down effect */}
           <motion.div
             className="absolute inset-0 overflow-hidden"
-            initial={{ scale: 1, y: 0 }}
-            animate={{ scale: 3, y: "200vh" }}
-            transition={{ duration: 3, delay: 1.5, ease: "easeInOut" }}
+            initial={{ scale: 1, y: 0, opacity: 1 }}
+            animate={{ scale: 2.5, y: "150vh", opacity: 0 }}
+            transition={{ duration: 2.5, delay: 1.5, ease: "easeInOut" }}
           >
             <div className="h-full w-full bg-gradient-to-b from-blue-300/40 via-blue-200/30 to-green-100/20" />
             {/* Cloud layers for depth */}
@@ -200,7 +200,7 @@ const Index = () => {
               className="absolute inset-0 bg-white/20"
               initial={{ opacity: 0.8 }}
               animate={{ opacity: 0 }}
-              transition={{ duration: 2, delay: 2 }}
+              transition={{ duration: 1.5, delay: 2 }}
               style={{
                 background: "radial-gradient(ellipse at center, rgba(255,255,255,0.3) 0%, transparent 70%)"
               }}
@@ -209,22 +209,19 @@ const Index = () => {
 
           {/* Community Area Reveal with 3D perspective */}
           <motion.div
-            className="absolute inset-0 overflow-hidden"
-            initial={{ y: "100vh", opacity: 0, scale: 0.8, rotateX: 15 }}
-            animate={{ y: 0, opacity: 1, scale: 1, rotateX: 0 }}
-            transition={{ duration: 2.5, delay: 3, ease: "easeOut" }}
-            style={{ perspective: "1000px" }}
+            className="absolute inset-0 overflow-hidden z-10"
+            initial={{ y: "100vh", opacity: 0, scale: 0.8 }}
+            animate={{ y: 0, opacity: 1, scale: 1 }}
+            transition={{ duration: 2, delay: 3.5, ease: "easeOut" }}
           >
-            <motion.div
-              className="h-full w-full relative"
-              initial={{ rotateX: 45, scale: 1.2 }}
-              animate={{ rotateX: 0, scale: 1 }}
-              transition={{ duration: 2.5, delay: 3, ease: "easeOut" }}
-            >
-              <img
+            <div className="h-full w-full relative">
+              <motion.img
                 src={heroImage}
                 alt="Community area aerial view"
                 className="h-full w-full object-cover brightness-120 contrast-110 saturate-110"
+                initial={{ scale: 1.3, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 1.5, delay: 4, ease: "easeOut" }}
               />
               {/* 3D community layout indicators */}
               <div className="absolute inset-0">
@@ -264,7 +261,7 @@ const Index = () => {
                 ))}
               </div>
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-            </motion.div>
+            </div>
           </motion.div>
 
           {/* Floating particles for magical effect */}
