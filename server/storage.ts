@@ -1,4 +1,6 @@
-import { User, InsertUser, Property, InsertProperty, Inquiry, InsertInquiry, Booking, InsertBooking, PROPERTY_STRUCTURE } from "@shared/schema";
+import { users, properties, inquiries, bookings, type User, type Property, type Inquiry, type Booking, type InsertUser, type InsertProperty, type InsertInquiry, type InsertBooking, ASHUMI_PROPERTIES } from "@shared/schema";
+import { db } from "./db";
+import { eq } from "drizzle-orm";
 
 export interface IStorage {
   // User methods
@@ -25,18 +27,119 @@ export interface IStorage {
   updateBooking(id: number, updates: Partial<InsertBooking>): Promise<Booking | undefined>;
   
   // Property structure
-  getPropertyStructure(): typeof PROPERTY_STRUCTURE;
+  getPropertyStructure(): typeof ASHUMI_PROPERTIES;
 }
 
-export class MemStorage implements IStorage {
-  private users: Map<number, User>;
-  private properties: Map<number, Property>;
-  private inquiries: Map<number, Inquiry>;
-  private bookings: Map<number, Booking>;
-  private currentUserId: number;
-  private currentPropertyId: number;
-  private currentInquiryId: number;
-  private currentBookingId: number;
+export class DatabaseStorage implements IStorage {
+  async getUser(id: number): Promise<User | undefined> {
+    const [user] = await db.select().from(users).where(eq(users.id, id));
+    return user || undefined;
+  }
+
+  async getUserByUsername(username: string): Promise<User | undefined> {
+    const [user] = await db.select().from(users).where(eq(users.username, username));
+    return user || undefined;
+  }
+
+  async createUser(insertUser: InsertUser): Promise<User> {
+    const [user] = await db
+      .insert(users)
+      .values(insertUser)
+      .returning();
+    return user;
+  }
+
+  async createProperty(propertyData: InsertProperty): Promise<Property> {
+    const [property] = await db
+      .insert(properties)
+      .values(propertyData)
+      .returning();
+    return property;
+  }
+
+  async getProperties(category?: string, type?: string, subtype?: string): Promise<Property[]> {
+    let query = db.select().from(properties);
+    
+    // Add filters as needed
+    if (category || type || subtype) {
+      // For now, return empty array - can implement filtering later
+      return [];
+    }
+    
+    return await query;
+  }
+
+  async getPropertyById(id: number): Promise<Property | undefined> {
+    const [property] = await db.select().from(properties).where(eq(properties.id, id));
+    return property || undefined;
+  }
+
+  async updateProperty(id: number, updates: Partial<InsertProperty>): Promise<Property | undefined> {
+    const [property] = await db
+      .update(properties)
+      .set(updates)
+      .where(eq(properties.id, id))
+      .returning();
+    return property || undefined;
+  }
+
+  async deleteProperty(id: number): Promise<boolean> {
+    const result = await db.delete(properties).where(eq(properties.id, id));
+    return result.rowCount > 0;
+  }
+
+  async createInquiry(inquiryData: InsertInquiry): Promise<Inquiry> {
+    const [inquiry] = await db
+      .insert(inquiries)
+      .values(inquiryData)
+      .returning();
+    return inquiry;
+  }
+
+  async getInquiries(propertyId?: number): Promise<Inquiry[]> {
+    if (propertyId) {
+      return await db.select().from(inquiries).where(eq(inquiries.propertyId, propertyId));
+    }
+    return await db.select().from(inquiries);
+  }
+
+  async getInquiryById(id: number): Promise<Inquiry | undefined> {
+    const [inquiry] = await db.select().from(inquiries).where(eq(inquiries.id, id));
+    return inquiry || undefined;
+  }
+
+  async createBooking(bookingData: InsertBooking): Promise<Booking> {
+    const [booking] = await db
+      .insert(bookings)
+      .values(bookingData)
+      .returning();
+    return booking;
+  }
+
+  async getBookings(propertyId?: number): Promise<Booking[]> {
+    if (propertyId) {
+      return await db.select().from(bookings).where(eq(bookings.propertyId, propertyId));
+    }
+    return await db.select().from(bookings);
+  }
+
+  async getBookingById(id: number): Promise<Booking | undefined> {
+    const [booking] = await db.select().from(bookings).where(eq(bookings.id, id));
+    return booking || undefined;
+  }
+
+  async updateBooking(id: number, updates: Partial<InsertBooking>): Promise<Booking | undefined> {
+    const [booking] = await db
+      .update(bookings)
+      .set(updates)
+      .where(eq(bookings.id, id))
+      .returning();
+    return booking || undefined;
+  }
+
+  getPropertyStructure(): typeof ASHUMI_PROPERTIES {
+    return ASHUMI_PROPERTIES;
+  }
 
   constructor() {
     this.users = new Map();
@@ -524,4 +627,4 @@ export class MemStorage implements IStorage {
   }
 }
 
-export const storage = new MemStorage();
+export const storage = new DatabaseStorage();

@@ -86,38 +86,106 @@ export type InsertInquiry = z.infer<typeof insertInquirySchema>;
 export type Booking = typeof bookings.$inferSelect;
 export type InsertBooking = z.infer<typeof insertBookingSchema>;
 
-// Property type definitions for the hierarchical structure
-export const PROPERTY_STRUCTURE = {
+// Ashumi Estates property data based on brochure
+export const ASHUMI_PROPERTIES = {
+  // Residential Properties
   residential: {
-    'single-storey': {
-      name: 'Single Storey Stand Alone',
-      subtypes: ['3-bed', '4-bed']
+    'single-storey-homes': {
+      name: '3-Bed Single-Storey Homes',
+      units: 10,
+      type: 'Sale',
+      price: 170000,
+      description: 'Beautifully designed 3-bedroom single-storey homes with modern finishes and private gardens.'
     },
     'single-storey-duplex': {
-      name: 'Single Storey Duplexes', 
-      subtypes: ['3-bed', '4-bed']
+      name: '3-Bed Single-Storey Duplexes', 
+      units: 20,
+      type: 'Sale',
+      price: 150000,
+      description: 'Contemporary 3-bedroom duplex units perfect for families, featuring shared amenities.'
+    },
+    'four-bed-single': {
+      name: '4-Bed Single-Storey Homes',
+      units: 33,
+      type: 'Sale',
+      price: 170000,
+      description: 'Spacious 4-bedroom single-storey homes with premium fixtures and landscaped gardens.'
     },
     'double-storey-duplex': {
-      name: 'Double Storey Duplexes',
-      subtypes: ['3-bed', '4-bed'] 
+      name: '3-Bed Double-Storey Duplexes',
+      units: 36,
+      type: 'Sale',
+      price: 220000,
+      description: 'Elegant 3-bedroom double-storey duplex units with panoramic views.'
     },
-    'apartment-blocks': {
-      name: 'Three Story Apartment Blocks',
-      subtypes: ['ground-floor-studio', 'first-floor-1bed', 'second-floor-2bed']
+    'four-bed-double': {
+      name: '4-Bed Double-Storey Homes',
+      units: 26,
+      type: 'Sale',
+      price: 220000,
+      description: 'Luxurious 4-bedroom double-storey homes with modern architecture and premium amenities.'
+    },
+    'apartment-studios': {
+      name: 'Ground-Floor Studios',
+      units: 252,
+      type: 'Rental',
+      size: '40 m²',
+      description: 'Compact studios with private garden access, aluminium sliding doors, and en-suite bathroom.'
+    },
+    'apartment-one-bed': {
+      name: 'First-Floor 1-Bedrooms',
+      units: 144,
+      type: 'Rental',
+      size: '55–70 m² + 10 m² balcony',
+      description: 'Modern one-bedroom apartments with kitchenette, courtyard views, and covered balcony.'
+    },
+    'apartment-penthouse': {
+      name: 'Second-Floor 2-3 Bedrooms (Penthouse)',
+      units: 72,
+      type: 'Sale',
+      price: 120000,
+      size: '100 m² + 33 m² rooftop terrace',
+      description: 'Exclusive penthouse residences with panoramic views and premium finishes.'
     }
   },
+  // Commercial Properties  
   commercial: {
-    'malls': {
-      name: 'Shopping Malls',
-      subtypes: ['retail-space', 'food-court', 'anchor-store']
+    'retail-services': {
+      name: 'Retail & Services',
+      description: 'Supermarket, cafés, pharmacy, fuel station, and daily-needs shops.'
     },
-    'ground-play-office': {
-      name: 'Ground Play Office',
-      subtypes: ['small-office', 'medium-office', 'large-office']
+    'office-suites': {
+      name: 'Office Suites & Co-Work',
+      description: 'Professional workspace for telecommuters and entrepreneurs with high-speed connectivity.'
     },
-    'others': {
-      name: 'Other Commercial Spaces',
-      subtypes: ['warehouse', 'mixed-use', 'specialized']
+    'innovation-hub': {
+      name: 'Innovation Hub',
+      description: 'Mentorship programs and networking space for entrepreneurs and creators.'
     }
+  },
+  // Community Amenities
+  amenities: {
+    recreation: [
+      'Children\'s play areas',
+      'Multi-use sports courts', 
+      'Community football pitch',
+      'Clubhouse with swimming pool',
+      'Gym and event rooms',
+      'Rooftop lounge'
+    ],
+    green_spaces: [
+      'Walking trails',
+      'Picnic lawns',
+      'Native landscaping',
+      'Riverfront access',
+      'Gwebi River frontage'
+    ],
+    convenience: [
+      'On-site clinic',
+      'Fuel station & drive-through',
+      'Food Town (curated food court)',
+      'Solar-generated electricity',
+      'Professional management'
+    ]
   }
 } as const;
