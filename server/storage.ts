@@ -82,7 +82,9 @@ export class MemStorage implements IStorage {
       interiorVideos: propertyData.interiorVideos || [],
       floorPlanImages: propertyData.floorPlanImages || [],
       features: propertyData.features || [],
-      specifications: propertyData.specifications || {}
+      specifications: propertyData.specifications || {},
+      floorPlanDetails: propertyData.floorPlanDetails || null,
+      price: propertyData.price || null
     };
     this.properties.set(id, property);
     return property;
@@ -364,6 +366,7 @@ export class MemStorage implements IStorage {
       id,
       status: bookingData.status || "pending",
       stripePaymentIntentId: bookingData.stripePaymentIntentId || null,
+      paymentPlan: bookingData.paymentPlan || null,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     };
