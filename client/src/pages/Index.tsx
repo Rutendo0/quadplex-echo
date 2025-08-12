@@ -169,49 +169,100 @@ const Index = () => {
           animate={{ opacity: 1 }} 
           className="fixed inset-0 z-50 bg-black overflow-hidden"
         >
-          {/* Smooth, clean transition */}
+          {/* Cloud to Community Transition */}
           <motion.div
             className="absolute inset-0"
             initial={{ scale: 1.2, opacity: 1 }}
             animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 2, ease: "easeOut" }}
+            transition={{ duration: 3, ease: "easeInOut" }}
           >
-            <div 
-              className="h-full w-full bg-cover bg-center"
-              style={{
-                backgroundImage: `url(${heroImage})`,
-                filter: "brightness(0.9) contrast(1.1) saturate(1.0)"
-              }}
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+            {/* Initial clouds view */}
+            <motion.div
+              className="absolute inset-0"
+              initial={{ opacity: 1 }}
+              animate={{ opacity: 0 }}
+              transition={{ duration: 2, delay: 1 }}
+            >
+              <div 
+                className="h-full w-full bg-cover bg-center"
+                style={{
+                  backgroundImage: `url(${heroImage})`,
+                  filter: "brightness(0.8) contrast(1.1) saturate(0.9)"
+                }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-b from-sky-300/20 via-blue-200/10 to-transparent" />
+            </motion.div>
+
+            {/* Community aerial view reveal */}
+            <motion.div
+              className="absolute inset-0"
+              initial={{ opacity: 0, y: "20vh" }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 2, delay: 2, ease: "easeOut" }}
+            >
+              <div 
+                className="h-full w-full bg-cover bg-center"
+                style={{
+                  backgroundImage: "url(https://planning-org-uploaded-media.s3.amazonaws.com/image/9fab9700-599b-4e60-82dc-42f1fbea185dCluster-Residential-Community.jpg)",
+                  filter: "brightness(1.0) contrast(1.1) saturate(1.0)"
+                }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+            </motion.div>
           </motion.div>
 
-          {/* Simple Navigation Buttons Only */}
+          {/* Beautiful Centered Navigation Buttons */}
           <motion.div
-            className="absolute bottom-12 left-1/2 transform -translate-x-1/2"
-            initial={{ opacity: 0, y: 30 }}
+            className="absolute inset-0 flex items-center justify-center"
+            initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.5, duration: 1, ease: "easeOut" }}
+            transition={{ delay: 3.5, duration: 1, ease: "easeOut" }}
           >
-            <div className="flex space-x-8">
+            <div className="flex flex-col md:flex-row gap-8 max-w-4xl mx-auto px-6">
               <Link href="/residential">
-                <motion.button
-                  className="bg-white/15 backdrop-blur-md border border-white/30 rounded-lg px-10 py-5 text-white text-lg font-medium tracking-wide hover:bg-white/25 transition-all duration-300"
-                  whileHover={{ scale: 1.05, y: -3 }}
+                <motion.div
+                  className="group relative overflow-hidden bg-white/10 backdrop-blur-xl border border-white/30 rounded-2xl p-8 hover:bg-white/20 transition-all duration-500 min-w-[280px]"
+                  whileHover={{ scale: 1.05, y: -5 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  Residential
-                </motion.button>
+                  <div className="text-center text-white">
+                    <div className="mb-4">
+                      <div className="w-16 h-16 mx-auto mb-4 bg-emerald-500/20 rounded-full flex items-center justify-center">
+                        <svg className="w-8 h-8 text-emerald-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                        </svg>
+                      </div>
+                    </div>
+                    <h3 className="text-2xl font-serif font-bold mb-3">Residential</h3>
+                    <p className="text-white/80 text-sm leading-relaxed">
+                      Luxury apartments & homes with breathtaking aerial views
+                    </p>
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/10 to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                </motion.div>
               </Link>
               
               <Link href="/commercial">
-                <motion.button
-                  className="bg-white/15 backdrop-blur-md border border-white/30 rounded-lg px-10 py-5 text-white text-lg font-medium tracking-wide hover:bg-white/25 transition-all duration-300"
-                  whileHover={{ scale: 1.05, y: -3 }}
+                <motion.div
+                  className="group relative overflow-hidden bg-white/10 backdrop-blur-xl border border-white/30 rounded-2xl p-8 hover:bg-white/20 transition-all duration-500 min-w-[280px]"
+                  whileHover={{ scale: 1.05, y: -5 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  Commercial
-                </motion.button>
+                  <div className="text-center text-white">
+                    <div className="mb-4">
+                      <div className="w-16 h-16 mx-auto mb-4 bg-blue-500/20 rounded-full flex items-center justify-center">
+                        <svg className="w-8 h-8 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                        </svg>
+                      </div>
+                    </div>
+                    <h3 className="text-2xl font-serif font-bold mb-3">Commercial</h3>
+                    <p className="text-white/80 text-sm leading-relaxed">
+                      Premium office spaces & retail locations with city views
+                    </p>
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                </motion.div>
               </Link>
             </div>
           </motion.div>
