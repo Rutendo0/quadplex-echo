@@ -4,7 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Router, Route, Switch } from "wouter";
 import { HelmetProvider } from "react-helmet-async";
-import AshumiIndex from "./pages/AshumiIndex";
+import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Residential from "./pages/Residential";
 import Commercial from "./pages/Commercial";
@@ -25,7 +25,7 @@ const App = () => (
         <Sonner />
         <Router>
           <Switch>
-            <Route path="/" component={AshumiIndex} />
+            <Route path="/" component={Index} />
             <Route path="/residential" component={Residential} />
             <Route path="/residential/:type/:subtype" component={PropertyGallery} />
             <Route path="/residential/:type" component={PropertyGallery} />

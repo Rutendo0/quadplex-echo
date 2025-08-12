@@ -4,6 +4,10 @@ import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import heroImage from "@/assets/clouds-hero.jpg";
 import { motion } from "framer-motion";
+import { ASHUMI_PROPERTIES } from "@shared/schema";
+import PaymentCalculator from "@/components/PaymentCalculator";
+import BookingModal from "@/components/BookingModal";
+import { Calculator, Heart } from "lucide-react";
 
 const Index = () => {
   const [loading, setLoading] = useState(true);
@@ -11,6 +15,10 @@ const Index = () => {
   const [playingExperience, setPlayingExperience] = useState(false);
   const [experienceReady, setExperienceReady] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [showCalculator, setShowCalculator] = useState(false);
+  const [selectedProperty, setSelectedProperty] = useState<any>(null);
+  const [showBooking, setShowBooking] = useState(false);
+  const [calculationData, setCalculationData] = useState<any>(null);
   
 
   useEffect(() => {
@@ -45,16 +53,27 @@ const Index = () => {
     return () => clearTimeout(id);
   }, [playingExperience, experienceReady]);
 
-  const canonical = useMemo(() => (typeof window !== 'undefined' ? window.location.href : 'https://quadplex80.com'), []);
+  const canonical = useMemo(() => (typeof window !== 'undefined' ? window.location.href : 'https://ashumiestates.com'), []);
+
+  const handleCalculatorOpen = (property: any) => {
+    setSelectedProperty(property);
+    setShowCalculator(true);
+  };
+
+  const handleBookingClick = (calcData: any) => {
+    setCalculationData(calcData);
+    setShowCalculator(false);
+    setShowBooking(true);
+  };
 
   return (
     <main className="min-h-screen relative overflow-hidden">
       <Helmet>
-        <title>Above the Clouds | Quadplex 80</title>
-        <meta name="description" content="Rise above the city to your private sanctuary in the clouds. Quadplex 80 — experience endless horizons." />
+        <title>Above the Clouds | Ashumi Estates</title>
+        <meta name="description" content="Discover Ashumi Estates - a forward-thinking community on 20.6 ha with Gwebi River frontage and panoramic Parliament views. Quality homes, sustainable living, unmatched amenities." />
         <link rel="canonical" href={canonical} />
-        <meta property="og:title" content="Above the Clouds | Quadplex 80" />
-        <meta property="og:description" content="Rise above the city to your private sanctuary in the clouds." />
+        <meta property="og:title" content="Above the Clouds | Ashumi Estates" />
+        <meta property="og:description" content="Premium master-planned lifestyle precinct in Harare's fastest-growing node. Experience quality, dignity, and independence." />
       </Helmet>
 
       {/* Hero background */}
@@ -72,10 +91,10 @@ const Index = () => {
       <section className="container flex min-h-screen flex-col items-center justify-center gap-8">
         <header className="w-full text-center">
           <h1 className="text-4xl md:text-6xl font-serif font-semibold tracking-tight">
-            Above The Clouds — Quadplex 80
+            Above The Clouds — Ashumi Estates
           </h1>
           <p className="mt-4 text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
-            Rise above the hustle and bustle of the city and escape to your private sanctuary in the clouds. Experience a world of endless horizons.
+            More than a place to live—a forward-thinking community designed for quality, dignity, and independence across all life stages. 20.6 hectares with direct Gwebi River frontage and panoramic Parliament views.
           </p>
         </header>
 
@@ -231,9 +250,14 @@ const Index = () => {
                       </div>
                     </div>
                     <h3 className="text-2xl font-serif font-bold mb-3">Residential</h3>
-                    <p className="text-white/80 text-sm leading-relaxed">
-                      Luxury apartments & homes with breathtaking aerial views
+                    <p className="text-white/80 text-sm leading-relaxed mb-4">
+                      593 units: 3-4 bed homes, duplexes & apartments starting from $120,000
                     </p>
+                    <div className="text-xs text-white/60 space-y-1">
+                      <div>• 10% deposit payment plans available</div>
+                      <div>• Direct Gwebi River frontage</div>
+                      <div>• Professional management</div>
+                    </div>
                   </div>
                   <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/10 to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </motion.div>
@@ -254,9 +278,14 @@ const Index = () => {
                       </div>
                     </div>
                     <h3 className="text-2xl font-serif font-bold mb-3">Commercial</h3>
-                    <p className="text-white/80 text-sm leading-relaxed">
-                      Premium office spaces & retail locations with city views
+                    <p className="text-white/80 text-sm leading-relaxed mb-4">
+                      Retail, office suites & innovation hub with modern amenities
                     </p>
+                    <div className="text-xs text-white/60 space-y-1">
+                      <div>• On-site clinic & fuel station</div>
+                      <div>• Food court & supermarket</div>
+                      <div>• High-speed connectivity</div>
+                    </div>
                   </div>
                   <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </motion.div>
