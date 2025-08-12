@@ -183,13 +183,13 @@ const PropertyCard = ({ property, index, onViewFloorPlan }) => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1 }}
     >
-      <Card className="overflow-hidden hover-scale group" data-testid={`card-property-${property.id}`}>
+      <Card className="property-card overflow-hidden group" data-testid={`card-property-${property.id}`}>
         {/* Image Gallery */}
-        <div className="relative aspect-video overflow-hidden">
+        <div className="image-container relative aspect-video overflow-hidden">
           <img 
             src={allImages[currentImageIndex]} 
             alt={property.name}
-            className="h-full w-full object-cover transition-transform group-hover:scale-105"
+            className="image-hover h-full w-full object-cover"
           />
           
           {allImages.length > 1 && (

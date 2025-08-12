@@ -38,8 +38,8 @@ export class MemStorage implements IStorage {
     this.currentPropertyId = 1;
     this.currentInquiryId = 1;
     
-    // Initialize with sample properties
-    this.initializeSampleProperties();
+    // Initialize with premium sample properties
+    this.initializePremiumProperties();
   }
 
   async getUser(id: number): Promise<User | undefined> {
@@ -124,6 +124,155 @@ export class MemStorage implements IStorage {
 
   getPropertyStructure(): typeof PROPERTY_STRUCTURE {
     return PROPERTY_STRUCTURE;
+  }
+
+  private async initializePremiumProperties() {
+    // Premium Single Storey Properties
+    await this.createProperty({
+      category: "residential",
+      type: "single-storey", 
+      subtype: "3-bed",
+      name: "Skyline Villa 3-Bed",
+      description: "An exquisite single-storey villa offering panoramic cloud views with premium finishes throughout. This 3-bedroom residence features an open-plan living design that seamlessly connects indoor and outdoor spaces.",
+      shortDescription: "Luxury single-storey living with panoramic views",
+      price: "$850,000",
+      status: "available",
+      exteriorImages: ["/api/placeholder/800/600", "/api/placeholder/800/600", "/api/placeholder/800/600"],
+      interiorImages: ["/api/placeholder/600/400", "/api/placeholder/600/400", "/api/placeholder/600/400"],
+      floorPlanImages: ["/api/placeholder/800/600"],
+      interiorVideos: [],
+      features: ["Panoramic cloud views", "Open-plan living", "Premium finishes", "Outdoor terrace", "Smart home technology", "Energy efficient design"],
+      floorPlanDetails: {
+        totalArea: "180 sqm",
+        bedrooms: 3,
+        bathrooms: 2,
+        garage: 2,
+        features: ["Master suite with walk-in wardrobe", "Gourmet kitchen with island", "Spacious living area", "Private outdoor terrace", "Study nook", "Storage solutions"]
+      },
+      specifications: { buildYear: 2024, lotSize: "450 sqm", floorArea: "180 sqm" }
+    });
+
+    await this.createProperty({
+      category: "residential",
+      type: "single-storey",
+      subtype: "4-bed", 
+      name: "Horizon Estate 4-Bed",
+      description: "A magnificent 4-bedroom single-storey estate designed for executive families. Featuring expansive living spaces, premium amenities, and breathtaking elevated views above the clouds.",
+      shortDescription: "Executive family home with premium amenities",
+      price: "$1,200,000",
+      status: "available",
+      exteriorImages: ["/api/placeholder/800/600", "/api/placeholder/800/600"],
+      interiorImages: ["/api/placeholder/600/400", "/api/placeholder/600/400", "/api/placeholder/600/400", "/api/placeholder/600/400"],
+      floorPlanImages: ["/api/placeholder/800/600"],
+      interiorVideos: [],
+      features: ["Executive design", "Expansive living spaces", "Premium kitchen appliances", "Home office", "Entertainment area", "Landscaped gardens"],
+      floorPlanDetails: {
+        totalArea: "240 sqm",
+        bedrooms: 4,
+        bathrooms: 3,
+        garage: 2,
+        features: ["Master suite with ensuite and walk-in robe", "Three additional bedrooms", "Separate home office", "Open-plan kitchen/dining/living", "Butler's pantry", "Alfresco entertaining area"]
+      },
+      specifications: { buildYear: 2024, lotSize: "600 sqm", floorArea: "240 sqm" }
+    });
+
+    // Premium Duplex Properties
+    await this.createProperty({
+      category: "residential",
+      type: "single-storey-duplex",
+      subtype: "3-bed",
+      name: "Cloud Duplex 3-Bed",
+      description: "Modern duplex living that combines privacy with shared premium amenities. Each 3-bedroom unit features contemporary design with access to communal facilities and gardens.",
+      shortDescription: "Modern duplex living with shared amenities",
+      price: "$680,000",
+      status: "available",
+      exteriorImages: ["/api/placeholder/800/600", "/api/placeholder/800/600"],
+      interiorImages: ["/api/placeholder/600/400", "/api/placeholder/600/400"],
+      floorPlanImages: ["/api/placeholder/800/600"],
+      interiorVideos: [],
+      features: ["Duplex design", "Shared amenities", "Private gardens", "Contemporary finishes", "Community spaces", "Low maintenance"],
+      floorPlanDetails: {
+        totalArea: "150 sqm",
+        bedrooms: 3,
+        bathrooms: 2,
+        garage: 1,
+        features: ["Open-plan living", "Private courtyard", "Modern kitchen", "Master bedroom with ensuite", "Shared community facilities", "Visitor parking"]
+      },
+      specifications: { buildYear: 2024, lotSize: "300 sqm", floorArea: "150 sqm" }
+    });
+
+    await this.createProperty({
+      category: "residential",
+      type: "double-storey-duplex", 
+      subtype: "4-bed",
+      name: "Elevation Duplex 4-Bed",
+      description: "Premium double-storey duplex homes offering elevated living with expansive sky views. These 4-bedroom residences feature sophisticated design across two levels.",
+      shortDescription: "Premium double-storey homes with sky views",
+      price: "$950,000",
+      status: "available",
+      exteriorImages: ["/api/placeholder/800/600", "/api/placeholder/800/600"],
+      interiorImages: ["/api/placeholder/600/400", "/api/placeholder/600/400", "/api/placeholder/600/400"],
+      floorPlanImages: ["/api/placeholder/800/600", "/api/placeholder/800/600"],
+      interiorVideos: [],
+      features: ["Two-storey design", "Elevated sky views", "Sophisticated interiors", "Private rooftop access", "Premium fixtures", "Smart home integration"],
+      floorPlanDetails: {
+        totalArea: "220 sqm",
+        bedrooms: 4,
+        bathrooms: 3,
+        garage: 2,
+        features: ["Ground floor living areas", "Upper level bedrooms", "Rooftop terrace access", "Double-height ceilings", "Premium kitchen with stone benches", "Walk-in pantry"]
+      },
+      specifications: { buildYear: 2024, lotSize: "400 sqm", floorArea: "220 sqm" }
+    });
+
+    // Premium Apartment Properties
+    await this.createProperty({
+      category: "residential",
+      type: "apartment-blocks",
+      subtype: "ground-floor-studio",
+      name: "Ground Floor Studio",
+      description: "Contemporary ground-floor studio with direct garden access and modern amenities. Perfect for professionals seeking efficient living in a premium location.",
+      shortDescription: "Modern studios with garden access",
+      price: "$320,000",
+      status: "available",
+      exteriorImages: ["/api/placeholder/800/600"],
+      interiorImages: ["/api/placeholder/600/400", "/api/placeholder/600/400"],
+      floorPlanImages: ["/api/placeholder/800/600"],
+      interiorVideos: [],
+      features: ["Garden access", "Open-plan design", "Modern appliances", "Built-in storage", "Communal facilities", "Secure entry"],
+      floorPlanDetails: {
+        totalArea: "45 sqm",
+        bedrooms: 0,
+        bathrooms: 1,
+        garage: 0,
+        features: ["Open-plan living/sleeping area", "Compact kitchen with European appliances", "Private garden courtyard", "Built-in wardrobes", "Communal laundry", "Bike storage"]
+      },
+      specifications: { buildYear: 2024, lotSize: "N/A", floorArea: "45 sqm" }
+    });
+
+    await this.createProperty({
+      category: "residential",
+      type: "apartment-blocks",
+      subtype: "second-floor-2bed", 
+      name: "Second Floor 2-Bed Premium",
+      description: "Premium second-floor 2-bedroom apartment with unobstructed cloud views and luxury finishes. Features expansive windows and private balcony access.",
+      shortDescription: "Premium apartments with cloud views",
+      price: "$620,000",
+      status: "available", 
+      exteriorImages: ["/api/placeholder/800/600", "/api/placeholder/800/600"],
+      interiorImages: ["/api/placeholder/600/400", "/api/placeholder/600/400", "/api/placeholder/600/400"],
+      floorPlanImages: ["/api/placeholder/800/600"],
+      interiorVideos: [],
+      features: ["Unobstructed cloud views", "Private balcony", "Luxury finishes", "Floor-to-ceiling windows", "Premium appliances", "Lift access"],
+      floorPlanDetails: {
+        totalArea: "85 sqm",
+        bedrooms: 2,
+        bathrooms: 2,
+        garage: 1,
+        features: ["Open-plan living/dining", "Master bedroom with ensuite", "Second bedroom with built-ins", "Private balcony with views", "European laundry", "Secure parking"]
+      },
+      specifications: { buildYear: 2024, lotSize: "N/A", floorArea: "85 sqm" }
+    });
   }
 
   private initializeSampleProperties() {
