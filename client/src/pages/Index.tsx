@@ -41,7 +41,7 @@ const Index = () => {
 
   useEffect(() => {
     if (!playingExperience || experienceReady) return;
-    const id = setTimeout(() => setExperienceReady(true), 8000);
+    const id = setTimeout(() => setExperienceReady(true), 6000); // Faster timing
     return () => clearTimeout(id);
   }, [playingExperience, experienceReady]);
 
@@ -112,19 +112,31 @@ const Index = () => {
           animate={{ opacity: 1 }} 
           className="fixed inset-0 z-50 bg-black"
         >
-          {/* Sky/Clouds Scene */}
+          {/* Sky/Clouds Scene with zoom effect */}
           <motion.div
             className="absolute inset-0"
-            initial={{ scale: 1.2, y: 0 }}
+            initial={{ scale: 1.5, y: 0 }}
             animate={{ scale: 1, y: 0 }}
-            transition={{ duration: 3, ease: "easeOut" }}
+            transition={{ duration: 2, ease: "easeOut" }}
           >
             <img
               src={heroImage}
-              alt="Sky view"
-              className="h-full w-full object-cover"
+              alt="Sky view from above clouds"
+              className="h-full w-full object-cover filter blur-sm"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-blue-400/20 via-blue-300/10 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-b from-blue-400/30 via-blue-300/20 to-transparent" />
+            {/* Add moving cloud shadows */}
+            <motion.div
+              className="absolute inset-0"
+              animate={{ 
+                background: [
+                  "radial-gradient(ellipse 800px 400px at 20% 30%, rgba(255,255,255,0.1) 0%, transparent 50%)",
+                  "radial-gradient(ellipse 800px 400px at 80% 70%, rgba(255,255,255,0.1) 0%, transparent 50%)",
+                  "radial-gradient(ellipse 800px 400px at 20% 30%, rgba(255,255,255,0.1) 0%, transparent 50%)"
+                ]
+              }}
+              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+            />
           </motion.div>
 
           {/* Flying Birds Animation */}
@@ -175,29 +187,84 @@ const Index = () => {
             ))}
           </div>
 
-          {/* Descent Animation - Moving from clouds to community */}
+          {/* Descent Animation - Cinematic zoom down effect */}
           <motion.div
-            className="absolute inset-0"
-            initial={{ y: 0 }}
-            animate={{ y: "100vh" }}
-            transition={{ duration: 6, delay: 2, ease: "easeInOut" }}
+            className="absolute inset-0 overflow-hidden"
+            initial={{ scale: 1, y: 0 }}
+            animate={{ scale: 3, y: "200vh" }}
+            transition={{ duration: 3, delay: 1.5, ease: "easeInOut" }}
           >
-            <div className="h-full w-full bg-gradient-to-b from-blue-200/30 to-green-200/20" />
+            <div className="h-full w-full bg-gradient-to-b from-blue-300/40 via-blue-200/30 to-green-100/20" />
+            {/* Cloud layers for depth */}
+            <motion.div
+              className="absolute inset-0 bg-white/20"
+              initial={{ opacity: 0.8 }}
+              animate={{ opacity: 0 }}
+              transition={{ duration: 2, delay: 2 }}
+              style={{
+                background: "radial-gradient(ellipse at center, rgba(255,255,255,0.3) 0%, transparent 70%)"
+              }}
+            />
           </motion.div>
 
-          {/* Community Area Reveal */}
+          {/* Community Area Reveal with 3D perspective */}
           <motion.div
-            className="absolute inset-0"
-            initial={{ y: "100vh", opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 4, delay: 4, ease: "easeOut" }}
+            className="absolute inset-0 overflow-hidden"
+            initial={{ y: "100vh", opacity: 0, scale: 0.8, rotateX: 15 }}
+            animate={{ y: 0, opacity: 1, scale: 1, rotateX: 0 }}
+            transition={{ duration: 2.5, delay: 3, ease: "easeOut" }}
+            style={{ perspective: "1000px" }}
           >
-            <img
-              src={heroImage}
-              alt="Community area"
-              className="h-full w-full object-cover brightness-110 contrast-105"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+            <motion.div
+              className="h-full w-full relative"
+              initial={{ rotateX: 45, scale: 1.2 }}
+              animate={{ rotateX: 0, scale: 1 }}
+              transition={{ duration: 2.5, delay: 3, ease: "easeOut" }}
+            >
+              <img
+                src={heroImage}
+                alt="Community area aerial view"
+                className="h-full w-full object-cover brightness-120 contrast-110 saturate-110"
+              />
+              {/* 3D community layout indicators */}
+              <div className="absolute inset-0">
+                {/* Building/area markers */}
+                {[
+                  { x: 25, y: 35, size: 8, label: "Residential Zone" },
+                  { x: 65, y: 30, size: 12, label: "Commercial Hub" },
+                  { x: 45, y: 55, size: 6, label: "Recreation" },
+                  { x: 35, y: 70, size: 4, label: "Gardens" },
+                  { x: 55, y: 75, size: 5, label: "Amenities" }
+                ].map((area, i) => (
+                  <motion.div
+                    key={i}
+                    className="absolute flex items-center justify-center"
+                    style={{ 
+                      left: `${area.x}%`, 
+                      top: `${area.y}%`,
+                      width: `${area.size}%`,
+                      height: `${area.size * 0.6}%`
+                    }}
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={{ opacity: 0.7, scale: 1 }}
+                    transition={{ delay: 4 + i * 0.3, duration: 0.5 }}
+                  >
+                    <div className="w-full h-full bg-white/20 border border-white/40 rounded-lg backdrop-blur-sm flex items-center justify-center">
+                      <div className="w-2 h-2 bg-white/80 rounded-full animate-pulse" />
+                    </div>
+                    <motion.div
+                      className="absolute -top-8 left-1/2 transform -translate-x-1/2 text-white/80 text-xs font-medium whitespace-nowrap bg-black/50 px-2 py-1 rounded"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 4.5 + i * 0.3 }}
+                    >
+                      {area.label}
+                    </motion.div>
+                  </motion.div>
+                ))}
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+            </motion.div>
           </motion.div>
 
           {/* Floating particles for magical effect */}
@@ -230,14 +297,24 @@ const Index = () => {
             className="absolute inset-x-0 top-1/3 text-center text-white z-10"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: experienceReady ? 0 : 1, y: experienceReady ? -20 : 0 }}
-            transition={{ duration: 1, delay: 5 }}
+            transition={{ duration: 1, delay: 4.5 }}
           >
-            <h2 className="text-4xl md:text-6xl font-serif font-bold mb-4">
+            <motion.h2 
+              className="text-4xl md:text-6xl font-serif font-bold mb-4"
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 1, delay: 4.8 }}
+            >
               Quadplex 80
-            </h2>
-            <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto px-6">
+            </motion.h2>
+            <motion.p 
+              className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto px-6"
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 1, delay: 5.2 }}
+            >
               A sanctuary above the clouds where luxury meets tranquility
-            </p>
+            </motion.p>
           </motion.div>
 
           {/* Navigation Buttons */}
