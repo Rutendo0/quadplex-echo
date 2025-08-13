@@ -69,7 +69,7 @@ const ResidentialDetail = () => {
     <main className="min-h-screen">
       <Helmet>
         <title>{getPageTitle()} | Quadplex 80</title>
-        <meta name="description" content={`Discover premium ${getPageTitle().toLowerCase()} properties above the clouds at Quadplex 80.`} />
+        <meta name="description" content={`Discover premium ${getPageTitle().toLowerCase()} properties at Ashume Estate.`} />
         <link rel="canonical" href={canonical} />
       </Helmet>
 

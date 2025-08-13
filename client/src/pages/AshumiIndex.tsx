@@ -10,7 +10,6 @@ import {
   MapPin, 
   Users, 
   TreePine, 
-  Car, 
   Dumbbell, 
   ShoppingBag, 
   Calculator, 
@@ -19,10 +18,6 @@ import {
   Mail, 
   Globe,
   CheckCircle,
-  DollarSign,
-  Calendar,
-  Waves,
-  Sun,
   Shield
 } from "lucide-react";
 import { motion } from "framer-motion";
@@ -50,9 +45,9 @@ const AshumiIndex = () => {
   return (
     <main className="min-h-screen bg-white">
       <Helmet>
-        <title>Ashumi Estates - Premium Living Above the Clouds | Harare, Zimbabwe</title>
+        <title>Ashumi Estates - Premium Living| Harare, Zimbabwe</title>
         <meta name="description" content="Discover Ashumi Estates, a master-planned lifestyle precinct offering quality homes, sustainable living, and unmatched amenities with direct Gwebi River frontage in Harare, Zimbabwe." />
-        <meta property="og:title" content="Ashumi Estates - Premium Living Above the Clouds" />
+        <meta property="og:title" content="Ashumi Estates - Premium Living" />
         <meta property="og:description" content="Forward-thinking community with 20.6 ha of luxury residential and commercial properties in Harare's fastest-growing node." />
       </Helmet>
 
@@ -176,7 +171,7 @@ const AshumiIndex = () => {
                       <Badge variant="secondary" className="bg-blue-100 text-blue-800">
                         {property.type}
                       </Badge>
-                      {property.price && (
+                      {"price" in property && typeof property.price === "number" && (
                         <div className="text-right">
                           <div className="text-2xl font-bold text-green-600">
                             ${property.price.toLocaleString()}
@@ -196,7 +191,7 @@ const AshumiIndex = () => {
                         <Users className="h-4 w-4 text-gray-400" />
                         <span className="text-gray-500">{property.units} Units</span>
                       </div>
-                      {property.size && (
+                      {"size" in property && (
                         <div className="flex items-center space-x-1">
                           <Home className="h-4 w-4 text-gray-400" />
                           <span className="text-gray-500">{property.size}</span>
@@ -205,7 +200,7 @@ const AshumiIndex = () => {
                     </div>
 
                     <div className="flex gap-2 pt-4">
-                      {property.price && (
+                      {"price" in property && typeof property.price === "number" && (
                         <Button 
                           size="sm" 
                           className="flex-1 bg-blue-600 hover:bg-blue-700"

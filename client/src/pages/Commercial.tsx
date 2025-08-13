@@ -147,7 +147,7 @@ const Commercial = () => {
                     <Badge variant="secondary">{space.size}</Badge>
                   </div>
                   
-                  <p className="text-gray-600 mb-4 text-sm font-medium text-blue-600">
+                  <p className="mb-4 text-sm font-medium text-blue-600">
                     {space.category}
                   </p>
                   

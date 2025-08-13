@@ -10,7 +10,7 @@ const Residential = () => {
     <main className="min-h-screen relative overflow-hidden">
       <Helmet>
         <title>Residential | Quadplex 80</title>
-        <meta name="description" content="Discover refined residential living above the clouds at Quadplex 80." />
+        <meta name="description" content="Discover refined residential living  at Ashumi Estate." />
         <link rel="canonical" href={canonical} />
       </Helmet>
 

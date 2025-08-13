@@ -98,7 +98,7 @@ const PropertyGallery = () => {
     <main className="min-h-screen bg-white">
       <Helmet>
         <title>{property.name} | Quadplex 80</title>
-        <meta name="description" content={`${property.shortDescription} - Premium properties above the clouds at Quadplex 80.`} />
+        <meta name="description" content={`${property.shortDescription} - Premium properties  at Ahumi Estate.`} />
         <link rel="canonical" href={canonical} />
       </Helmet>
 

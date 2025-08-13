@@ -4,13 +4,8 @@ import {
   Users, 
   Zap, 
   Coffee, 
-  Stethoscope, 
-  Car, 
   TreePine, 
-  Waves, 
-  Dumbbell,
   Shield,
-  Wifi,
   Building2,
   Lightbulb
 } from "lucide-react";

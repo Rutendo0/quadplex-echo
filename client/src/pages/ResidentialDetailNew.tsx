@@ -7,22 +7,14 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Separator } from "@/components/ui/separator";
 import { 
   ArrowLeft, 
   Home, 
-  MapPin, 
-  Calendar, 
-  Users, 
   Car,
-  Maximize,
-  Star,
   Bed,
   Bath,
   Square,
   CheckCircle,
-  ImageIcon,
-  Play,
   Layout,
   Heart,
   Share2,
@@ -33,8 +25,6 @@ import {
   TrendingUp,
   Shield,
   Award,
-  DollarSign,
-  Eye,
   FileText
 } from "lucide-react";
 import PaymentCalculator from "@/components/PaymentCalculator";
@@ -140,10 +130,10 @@ const ResidentialDetailNew = () => {
   return (
     <main className="min-h-screen world-class-bg">
       <Helmet>
-        <title>{getPageTitle()} | Quadplex 80</title>
-        <meta name="description" content={`Discover premium ${getPageTitle().toLowerCase()} properties above the clouds at Quadplex 80. ${property.description}`} />
+        <title>{getPageTitle()} | Ashumi Estate</title>
+        <meta name="description" content={`Discover premium ${getPageTitle().toLowerCase()} properties at Ashumi Estate. ${property.description}`} />
         <link rel="canonical" href={canonical} />
-        <meta property="og:title" content={`${property.name} | Quadplex 80`} />
+        <meta property="og:title" content={`${property.name} | Ashumi Estate`} />
         <meta property="og:description" content={property.shortDescription} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={canonical} />

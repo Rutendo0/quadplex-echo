@@ -11,7 +11,6 @@ import PropertyStats from "@/components/PropertyStats";
 import AmenitiesShowcase from "@/components/AmenitiesShowcase";
 import InteractivePropertyMap from "@/components/InteractivePropertyMap";
 import PropertyTypesGrid from "@/components/PropertyTypesGrid";
-import TestimonialsCarousel from "@/components/TestimonialsCarousel";
 import FloatingActionBar from "@/components/FloatingActionBar";
 import FinishPackages from "@/components/FinishPackages";
 import { Calculator, Heart, ArrowDown, Play } from "lucide-react";
@@ -76,10 +75,10 @@ const Index = () => {
   return (
     <main className="min-h-screen relative overflow-hidden">
       <Helmet>
-        <title>Above the Clouds | Ashumi Estates</title>
+        <title>Ashumi Estates</title>
         <meta name="description" content="Discover Ashumi Estates - a forward-thinking community on 20.6 ha with Gwebi River frontage and panoramic Parliament views. Quality homes, sustainable living, unmatched amenities." />
         <link rel="canonical" href={canonical} />
-        <meta property="og:title" content="Above the Clouds | Ashumi Estates" />
+        <meta property="og:title" content="Ashumi Estates" />
         <meta property="og:description" content="Premium master-planned lifestyle precinct in Harare's fastest-growing node. Experience quality, dignity, and independence." />
       </Helmet>
 
@@ -362,8 +361,6 @@ const Index = () => {
             </div>
           </section>
 
-          {/* Testimonials */}
-          <TestimonialsCarousel />
 
           {/* Payment Plans & Mortgage Information */}
           <section className="py-20 bg-white">
@@ -512,8 +509,6 @@ const Index = () => {
           {/* Interior Finish Packages */}
           <FinishPackages />
 
-          {/* Testimonials */}
-          <TestimonialsCarousel />
         </>
       )}
 
