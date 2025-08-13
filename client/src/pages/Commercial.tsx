@@ -12,7 +12,7 @@ import commercialRetail from "@assets/image_1755032159378.png";
 import commercialInterior from "@assets/image_1755032194653.png";
 
 const Commercial = () => {
-  const canonical = typeof window !== 'undefined' ? window.location.href : 'https://ashumiestates.com/commercial';
+  const canonical = typeof window !== 'undefined' ? window.location.href : 'https://ashumi-estate.com/commercial';
 
   const commercialSpaces = [
     {

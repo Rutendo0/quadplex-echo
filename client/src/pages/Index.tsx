@@ -59,7 +59,7 @@ const Index = () => {
     return () => clearTimeout(id);
   }, [playingExperience, experienceReady]);
 
-  const canonical = useMemo(() => (typeof window !== 'undefined' ? window.location.href : 'https://ashumiestates.com'), []);
+  const canonical = useMemo(() => (typeof window !== 'undefined' ? window.location.href : 'https://ashumi-estate.com'), []);
 
   const handleCalculatorOpen = (property: any) => {
     setSelectedProperty(property);
@@ -97,7 +97,7 @@ const Index = () => {
       <section className="container flex min-h-screen flex-col items-center justify-center gap-8">
         <header className="w-full text-center">
           <h1 className="text-4xl md:text-6xl font-serif font-semibold tracking-tight">
-            Above The Clouds — Ashumi Estates
+            Above The Clouds — Ashumi Estate
           </h1>
           <p className="mt-4 text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
             A master-planned lifestyle precinct on 20.6 hectares featuring Gwebi River frontage, panoramic Parliament views, and homes priced accessibly with unmatched amenities and professional management.

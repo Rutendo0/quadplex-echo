@@ -92,13 +92,13 @@ const PropertyGallery = () => {
     );
   }
 
-  const canonical = typeof window !== 'undefined' ? window.location.href : `https://quadplex80.com/residential/${propertyType}/${propertySubtype}`;
+  const canonical = typeof window !== 'undefined' ? window.location.href : `https://ashumi-estate.com/residential/${propertyType}/${propertySubtype}`;
 
   return (
     <main className="min-h-screen bg-white">
       <Helmet>
-        <title>{property.name} | Quadplex 80</title>
-        <meta name="description" content={`${property.shortDescription} - Premium properties  at Ahumi Estate.`} />
+        <title>{property.name} | Ashumi Estate</title>
+        <meta name="description" content={`${property.shortDescription} - Premium properties at Ashumi Estate.`} />
         <link rel="canonical" href={canonical} />
       </Helmet>
 

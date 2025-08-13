@@ -33,7 +33,7 @@ const CommercialDetail = () => {
   const { type = "" } = useParams();
   const data = CONFIG[type];
   const canonical = useMemo(
-    () => (typeof window !== "undefined" ? window.location.href : `https://quadplex80.com/commercial/${type}`),
+    () => (typeof window !== "undefined" ? window.location.href : `https://ashumi-estate.com/commercial/${type}`),
     [type]
   );
 

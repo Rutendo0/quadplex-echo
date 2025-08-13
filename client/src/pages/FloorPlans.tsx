@@ -62,7 +62,7 @@ const FloorPlans: React.FC = () => {
           >
             <h1 className="text-3xl font-light text-stone-900 tracking-[0.2em]">
               <Link href="/" className="hover:text-amber-600 transition-all duration-300">
-                QUADPLEX 80
+                ASHUMI ESTATE
               </Link>
             </h1>
             <p className="text-xs text-stone-500 tracking-[0.3em] uppercase mt-1 font-light">

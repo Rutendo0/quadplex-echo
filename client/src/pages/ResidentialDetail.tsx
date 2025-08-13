@@ -51,7 +51,7 @@ const ResidentialDetail = () => {
     return formatPropertyType(propertyType || 'Properties');
   };
 
-  const canonical = typeof window !== 'undefined' ? window.location.href : `https://quadplex80.com/residential/${propertyType}${propertySubtype ? '/' + propertySubtype : ''}`;
+  const canonical = typeof window !== 'undefined' ? window.location.href : `https://ashumi-estate.com/residential/${propertyType}${propertySubtype ? '/' + propertySubtype : ''}`;
 
   if (!match && !matchType) {
     return <div>Property not found</div>;
@@ -68,8 +68,8 @@ const ResidentialDetail = () => {
   return (
     <main className="min-h-screen">
       <Helmet>
-        <title>{getPageTitle()} | Quadplex 80</title>
-        <meta name="description" content={`Discover premium ${getPageTitle().toLowerCase()} properties at Ashume Estate.`} />
+        <title>{getPageTitle()} | Ashumi Estate</title>
+        <meta name="description" content={`Discover premium ${getPageTitle().toLowerCase()} properties at Ashumi Estate.`} />
         <link rel="canonical" href={canonical} />
       </Helmet>
 

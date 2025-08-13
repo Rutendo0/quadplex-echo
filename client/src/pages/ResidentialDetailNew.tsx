@@ -95,7 +95,7 @@ const ResidentialDetailNew = () => {
     return 0;
   };
 
-  const canonical = typeof window !== 'undefined' ? window.location.href : `https://quadplex80.com/residential/${propertyType}${propertySubtype ? '/' + propertySubtype : ''}`;
+  const canonical = typeof window !== 'undefined' ? window.location.href : `https://ashumi-estate.com/residential/${propertyType}${propertySubtype ? '/' + propertySubtype : ''}`;
 
   if (!match && !matchType) {
     return <div>Property not found</div>;

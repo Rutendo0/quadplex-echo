@@ -46,7 +46,7 @@ const SingleStoreyFloorPlans: React.FC = () => {
             <ArrowLeft className="h-4 w-4 sm:h-5 sm:w-5 text-stone-600" />
             <div>
               <h1 className="text-lg sm:text-xl font-light text-stone-800 tracking-wide">
-                QUADPLEX 80
+                ASHUMI ESTATE
               </h1>
               <p className="text-xs text-stone-500 uppercase tracking-wider hidden sm:block">
                 Single Storey Floor Plans

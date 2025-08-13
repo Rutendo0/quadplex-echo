@@ -4,13 +4,13 @@ import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 const Residential = () => {
-  const canonical = typeof window !== 'undefined' ? window.location.href : 'https://quadplex80.com/residential';
+  const canonical = typeof window !== 'undefined' ? window.location.href : 'https://ashumi-estate.com/residential';
 
   return (
     <main className="min-h-screen relative overflow-hidden">
       <Helmet>
-        <title>Residential | Quadplex 80</title>
-        <meta name="description" content="Discover refined residential living  at Ashumi Estate." />
+        <title>Residential | Ashumi Estate</title>
+        <meta name="description" content="Discover refined residential living at Ashumi Estate." />
         <link rel="canonical" href={canonical} />
       </Helmet>
 
