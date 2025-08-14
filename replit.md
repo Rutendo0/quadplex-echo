@@ -74,13 +74,15 @@ A modern real estate website for Quadplex 80, featuring luxury residential and c
   ✓ Project migration completed successfully
 - 2025-08-14: Major design system overhaul and brand implementation:
   ✓ Implemented beige/earth-tone color scheme throughout website
-  ✓ Created authentic Ashumi Estates logo component (flowing river forming 'ae')
+  ✓ Replaced custom logo with authentic Ashumi Estates logo image on all pages
+  ✓ Removed "Above the Clouds" text from landing page title
   ✓ Added brand colors: 90% black (confidence), 70% black (sophistication)
   ✓ Redesigned entire CSS system with earth-warm, earth-beige, earth-sand themes
-  ✓ Enhanced Residential page with interactive property cards and pricing
+  ✓ Enhanced Residential page with dramatic background image hero section
+  ✓ Completely redesigned property listings with commercial-style card layouts
+  ✓ Added professional property cards with gradient backgrounds and pricing
+  ✓ Implemented shadow effects and hover animations for visual appeal
   ✓ Added always-visible sticky calculator component for quick access
-  ✓ Implemented premium card animations with earth-tone hover effects
-  ✓ Added comprehensive property stats and amenities showcase
   ✓ Created eye-catching property type listings with real pricing data
   ✓ Enhanced Commercial page with Ashumi logo integration
   ✓ Maintained calculator visibility across residential and commercial pages
