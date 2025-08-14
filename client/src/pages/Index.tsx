@@ -14,6 +14,8 @@ import PropertyTypesGrid from "@/components/PropertyTypesGrid";
 import FloatingActionBar from "@/components/FloatingActionBar";
 import FinishPackages from "@/components/FinishPackages";
 import { Calculator, Heart, ArrowDown, Play } from "lucide-react";
+import AshumiLogo from "@/components/AshumiLogo";
+import StickyCalculator from "@/components/StickyCalculator";
 
 const Index = () => {
   const [loading, setLoading] = useState(true);
@@ -93,6 +95,11 @@ const Index = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-background/0 via-background/10 to-background" />
       </div>
 
+      {/* Ashumi Logo Header */}
+      <div className="absolute top-8 left-8 z-10">
+        <AshumiLogo size="lg" />
+      </div>
+
       {/* Content */}
       <section className="container flex min-h-screen flex-col items-center justify-center gap-8">
         <header className="w-full text-center">
@@ -111,15 +118,15 @@ const Index = () => {
             transition={{ delay: 0.5, duration: 0.8 }}
           >
             <div className="text-center">
-              <div className="font-bold text-xl text-blue-600">593</div>
+              <div className="font-bold text-xl" style={{ color: 'hsl(var(--earth-gold))' }}>593</div>
               <div className="text-muted-foreground">Total Units</div>
             </div>
             <div className="text-center">
-              <div className="font-bold text-xl text-green-600">20.6 ha</div>
+              <div className="font-bold text-xl" style={{ color: 'hsl(var(--earth-brown))' }}>20.6 ha</div>
               <div className="text-muted-foreground">Master-Planned</div>
             </div>
             <div className="text-center">
-              <div className="font-bold text-xl text-purple-600">15%</div>
+              <div className="font-bold text-xl" style={{ color: 'hsl(var(--ashumi-black-70))' }}>15%</div>
               <div className="text-muted-foreground">Deposit Only</div>
             </div>
           </motion.div>
@@ -522,6 +529,9 @@ const Index = () => {
           handleCalculatorOpen(sampleProperty);
         }} 
       />
+
+      {/* Sticky Calculator for Quick Access */}
+      <StickyCalculator showOnPages={['/']} />
     </main>
   );
 };

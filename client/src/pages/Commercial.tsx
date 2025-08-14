@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { MapPin, Calendar, Wifi, Car, Coffee, Shield, Star, Users, Building2, Store, Zap } from "lucide-react";
 import { Link } from "wouter";
+import AshumiLogo from "@/components/AshumiLogo";
 import commercialExterior1 from "@assets/image_1755032117599.png";
 import commercialExterior2 from "@assets/image_1755032134655.png";
 import commercialOffice from "@assets/image_1755032147406.png";
@@ -75,6 +76,11 @@ const Commercial = () => {
         <meta property="og:title" content="Commercial Spaces | Ashumi Estates" />
         <meta property="og:description" content="Premium commercial development with modern retail, office spaces, and business amenities." />
       </Helmet>
+
+      {/* Ashumi Logo Header */}
+      <div className="absolute top-8 left-8 z-10">
+        <AshumiLogo size="lg" />
+      </div>
 
       {/* Hero Section */}
       <section className="relative py-24 overflow-hidden">
