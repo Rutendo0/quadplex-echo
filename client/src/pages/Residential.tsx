@@ -58,9 +58,11 @@ const Residential = () => {
               >
                 Explore Properties
               </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-black px-8 py-3">
-                <a href="/">Back Home</a>
-              </Button>
+              <Link to="/">
+                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-black px-8 py-3">
+                  Back Home
+                </Button>
+              </Link>
             </div>
           </motion.div>
         </div>
@@ -116,10 +118,17 @@ const Residential = () => {
               and the breathtaking views that Ashumi Estates offers.
             </p>
             <div className="mt-6 flex gap-3">
-              <Button className="bg-[hsl(var(--earth-gold))] hover:bg-[hsl(var(--earth-brown))] text-white">
+              <Button 
+                className="bg-[hsl(var(--earth-gold))] hover:bg-[hsl(var(--earth-brown))] text-white"
+                onClick={() => window.open('#floor-plans', '_blank')}
+              >
                 View Floor Plans
               </Button>
-              <Button variant="outline" className="border-[hsl(var(--earth-brown))] text-[hsl(var(--earth-brown))] hover:bg-[hsl(var(--earth-sand))]">
+              <Button 
+                variant="outline" 
+                className="border-[hsl(var(--earth-brown))] text-[hsl(var(--earth-brown))] hover:bg-[hsl(var(--earth-sand))]"
+                onClick={() => window.open('#virtual-tour', '_blank')}
+              >
                 Virtual Tour
               </Button>
             </div>
@@ -403,8 +412,263 @@ const Residential = () => {
             </div>
           </div>
 
+          {/* Double Storey Stand Alone Homes */}
+          <div className="space-y-8">
+            <motion.div 
+              className="text-center"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <h3 className="text-3xl font-bold mb-4" style={{ color: 'hsl(var(--ashumi-black-90))' }}>
+                Double Storey Stand Alone Homes
+              </h3>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                Two-storey luxury homes with elevated living spaces and panoramic views
+              </p>
+            </motion.div>
+            
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+              >
+                <div className="relative h-48 bg-gradient-to-br from-orange-100 to-orange-200">
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <Home className="w-16 h-16 text-orange-600" />
+                  </div>
+                  <div className="absolute top-4 left-4 bg-orange-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+                    Two-Storey
+                  </div>
+                  <div className="absolute top-4 right-4 bg-white/90 text-[hsl(var(--ashumi-black-90))] px-3 py-1 rounded-full text-sm font-bold">
+                    $225,000
+                  </div>
+                </div>
+                
+                <div className="p-6">
+                  <div className="flex items-center justify-between mb-3">
+                    <h4 className="text-2xl font-bold" style={{ color: 'hsl(var(--ashumi-black-90))' }}>3-Bedroom Double Storey</h4>
+                    <div className="text-sm font-medium text-muted-foreground">180m²</div>
+                  </div>
+                  
+                  <p className="text-muted-foreground mb-4 leading-relaxed">
+                    Elegant two-storey homes with separated living areas and elevated master suites.
+                  </p>
+                  
+                  <div className="space-y-2 mb-6">
+                    <h5 className="font-semibold" style={{ color: 'hsl(var(--ashumi-black-90))' }}>Features:</h5>
+                    <div className="grid grid-cols-2 gap-2">
+                      <div className="flex items-center text-sm text-muted-foreground">
+                        <div className="w-2 h-2 bg-orange-500 rounded-full mr-2"></div>
+                        3 bedrooms, 2.5 bathrooms
+                      </div>
+                      <div className="flex items-center text-sm text-muted-foreground">
+                        <div className="w-2 h-2 bg-orange-500 rounded-full mr-2"></div>
+                        Master suite upstairs
+                      </div>
+                      <div className="flex items-center text-sm text-muted-foreground">
+                        <div className="w-2 h-2 bg-orange-500 rounded-full mr-2"></div>
+                        Double garage
+                      </div>
+                      <div className="flex items-center text-sm text-muted-foreground">
+                        <div className="w-2 h-2 bg-orange-500 rounded-full mr-2"></div>
+                        Panoramic views
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="bg-[hsl(var(--earth-sand))] p-4 rounded-lg mb-4">
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm font-medium" style={{ color: 'hsl(var(--ashumi-black-90))' }}>Deposit (10%)</span>
+                      <span className="text-lg font-bold" style={{ color: 'hsl(var(--earth-brown))' }}>$22,500</span>
+                    </div>
+                  </div>
+                  
+                  <Link to="/residential/double-storey/3-bed" data-testid="link-double-storey-3bed">
+                    <Button className="w-full bg-orange-600 hover:bg-orange-700 text-white">
+                      View Details & Calculate Payment
+                    </Button>
+                  </Link>
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+              >
+                <div className="relative h-48 bg-gradient-to-br from-red-100 to-red-200">
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <Home className="w-16 h-16 text-red-600" />
+                  </div>
+                  <div className="absolute top-4 left-4 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+                    Executive
+                  </div>
+                  <div className="absolute top-4 right-4 bg-white/90 text-[hsl(var(--ashumi-black-90))] px-3 py-1 rounded-full text-sm font-bold">
+                    $285,000
+                  </div>
+                </div>
+                
+                <div className="p-6">
+                  <div className="flex items-center justify-between mb-3">
+                    <h4 className="text-2xl font-bold" style={{ color: 'hsl(var(--ashumi-black-90))' }}>4-Bedroom Double Storey</h4>
+                    <div className="text-sm font-medium text-muted-foreground">220m²</div>
+                  </div>
+                  
+                  <p className="text-muted-foreground mb-4 leading-relaxed">
+                    Executive family homes with expansive living areas and luxury amenities across two floors.
+                  </p>
+                  
+                  <div className="space-y-2 mb-6">
+                    <h5 className="font-semibold" style={{ color: 'hsl(var(--ashumi-black-90))' }}>Features:</h5>
+                    <div className="grid grid-cols-2 gap-2">
+                      <div className="flex items-center text-sm text-muted-foreground">
+                        <div className="w-2 h-2 bg-red-500 rounded-full mr-2"></div>
+                        4 bedrooms, 3.5 bathrooms
+                      </div>
+                      <div className="flex items-center text-sm text-muted-foreground">
+                        <div className="w-2 h-2 bg-red-500 rounded-full mr-2"></div>
+                        Master suite with balcony
+                      </div>
+                      <div className="flex items-center text-sm text-muted-foreground">
+                        <div className="w-2 h-2 bg-red-500 rounded-full mr-2"></div>
+                        Triple garage
+                      </div>
+                      <div className="flex items-center text-sm text-muted-foreground">
+                        <div className="w-2 h-2 bg-red-500 rounded-full mr-2"></div>
+                        Executive finishes
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="bg-[hsl(var(--earth-sand))] p-4 rounded-lg mb-4">
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm font-medium" style={{ color: 'hsl(var(--ashumi-black-90))' }}>Deposit (10%)</span>
+                      <span className="text-lg font-bold" style={{ color: 'hsl(var(--earth-brown))' }}>$28,500</span>
+                    </div>
+                  </div>
+                  
+                  <Link to="/residential/double-storey/4-bed" data-testid="link-double-storey-4bed">
+                    <Button className="w-full bg-red-600 hover:bg-red-700 text-white">
+                      View Details & Calculate Payment
+                    </Button>
+                  </Link>
+                </div>
+              </motion.div>
+            </div>
+          </div>
 
         </article>
+        </div>
+      </section>
+
+      {/* Choose Your Perfect Home - Separate Section */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-6">
+          <motion.div 
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-4xl font-bold mb-6" style={{ color: 'hsl(var(--ashumi-black-90))' }}>
+              Choose Your Perfect Home
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              From intimate studios to spacious family estates, discover homes designed for every lifestyle with colors that reflect your personality
+            </p>
+          </motion.div>
+
+          {/* Color Palette Section */}
+          <motion.div 
+            className="mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <h3 className="text-2xl font-bold text-center mb-8" style={{ color: 'hsl(var(--ashumi-black-90))' }}>
+              Interior Color Palettes
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="text-center">
+                <div className="mb-4 mx-auto w-32 h-32 rounded-full bg-gradient-to-br from-amber-100 to-amber-200 flex items-center justify-center shadow-lg">
+                  <div className="w-20 h-20 rounded-full bg-gradient-to-br from-amber-200 to-amber-300"></div>
+                </div>
+                <h4 className="text-lg font-semibold mb-2" style={{ color: 'hsl(var(--ashumi-black-90))' }}>Warm Earth</h4>
+                <p className="text-muted-foreground">Beige, cream, and warm sand tones for cozy living</p>
+              </div>
+              
+              <div className="text-center">
+                <div className="mb-4 mx-auto w-32 h-32 rounded-full bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center shadow-lg">
+                  <div className="w-20 h-20 rounded-full bg-gradient-to-br from-slate-200 to-slate-300"></div>
+                </div>
+                <h4 className="text-lg font-semibold mb-2" style={{ color: 'hsl(var(--ashumi-black-90))' }}>Modern Neutral</h4>
+                <p className="text-muted-foreground">Clean whites and greys for contemporary elegance</p>
+              </div>
+              
+              <div className="text-center">
+                <div className="mb-4 mx-auto w-32 h-32 rounded-full bg-gradient-to-br from-emerald-100 to-emerald-200 flex items-center justify-center shadow-lg">
+                  <div className="w-20 h-20 rounded-full bg-gradient-to-br from-emerald-200 to-emerald-300"></div>
+                </div>
+                <h4 className="text-lg font-semibold mb-2" style={{ color: 'hsl(var(--ashumi-black-90))' }}>Natural Green</h4>
+                <p className="text-muted-foreground">Forest greens and sage for nature-inspired living</p>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Property Type Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 text-center hover:shadow-lg transition-all duration-300"
+            >
+              <div className="text-4xl mb-4">🏠</div>
+              <h4 className="text-lg font-bold mb-2" style={{ color: 'hsl(var(--ashumi-black-90))' }}>Single Storey</h4>
+              <p className="text-sm text-muted-foreground mb-3">Modern ground-level living</p>
+              <div className="text-sm font-medium" style={{ color: 'hsl(var(--earth-gold))' }}>From $185,000</div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl p-6 text-center hover:shadow-lg transition-all duration-300"
+            >
+              <div className="text-4xl mb-4">🏢</div>
+              <h4 className="text-lg font-bold mb-2" style={{ color: 'hsl(var(--ashumi-black-90))' }}>Double Storey</h4>
+              <p className="text-sm text-muted-foreground mb-3">Elevated luxury homes</p>
+              <div className="text-sm font-medium" style={{ color: 'hsl(var(--earth-gold))' }}>From $225,000</div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-6 text-center hover:shadow-lg transition-all duration-300"
+            >
+              <div className="text-4xl mb-4">🌅</div>
+              <h4 className="text-lg font-bold mb-2" style={{ color: 'hsl(var(--ashumi-black-90))' }}>Apartments</h4>
+              <p className="text-sm text-muted-foreground mb-3">Sky-view living spaces</p>
+              <div className="text-sm font-medium" style={{ color: 'hsl(var(--earth-gold))' }}>From $45,000</div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-6 text-center hover:shadow-lg transition-all duration-300"
+            >
+              <div className="text-4xl mb-4">🏡</div>
+              <h4 className="text-lg font-bold mb-2" style={{ color: 'hsl(var(--ashumi-black-90))' }}>Custom Builds</h4>
+              <p className="text-sm text-muted-foreground mb-3">Tailored to your vision</p>
+              <div className="text-sm font-medium" style={{ color: 'hsl(var(--earth-gold))' }}>Contact Us</div>
+            </motion.div>
+          </div>
         </div>
       </section>
 

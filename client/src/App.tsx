@@ -27,6 +27,7 @@ const App = () => (
           <Switch>
             <Route path="/" component={Index} />
             <Route path="/residential" component={Residential} />
+            <Route path="/residential/double-storey/:subtype" component={PropertyGallery} />
             <Route path="/residential/:type/:subtype" component={PropertyGallery} />
             <Route path="/residential/:type" component={PropertyGallery} />
             <Route path="/commercial" component={Commercial} />

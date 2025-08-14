@@ -269,7 +269,7 @@ const Index = () => {
             transition={{ delay: 3.5, duration: 1, ease: "easeOut" }}
           >
             <div className="flex flex-col md:flex-row gap-8 max-w-4xl mx-auto px-6">
-              <Link href="/residential">
+              <Link to="/residential">
                 <motion.div
                   className="group relative overflow-hidden bg-white/10 backdrop-blur-xl border border-white/30 rounded-2xl p-8 hover:bg-white/20 transition-all duration-500 min-w-[280px]"
                   whileHover={{ scale: 1.05, y: -5 }}
@@ -298,7 +298,7 @@ const Index = () => {
                 </motion.div>
               </Link>
               
-              <Link href="/commercial">
+              <Link to="/commercial">
                 <motion.div
                   className="group relative overflow-hidden bg-white/10 backdrop-blur-xl border border-white/30 rounded-2xl p-8 hover:bg-white/20 transition-all duration-500 min-w-[280px]"
                   whileHover={{ scale: 1.05, y: -5 }}

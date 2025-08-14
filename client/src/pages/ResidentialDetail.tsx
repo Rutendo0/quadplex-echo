@@ -46,7 +46,7 @@ const ResidentialDetail = () => {
 
   const getPageTitle = () => {
     if (propertySubtype) {
-      return `${formatSubtype(propertySubtype)} ${formatPropertyType(propertyType)}`;
+      return `${formatSubtype(propertySubtype)} ${formatPropertyType(propertyType || '')}`;
     }
     return formatPropertyType(propertyType || 'Properties');
   };
@@ -83,9 +83,9 @@ const ResidentialDetail = () => {
         <div className="relative container h-full flex items-end pb-16">
           <div className="max-w-3xl animate-enter">
             <nav className="flex items-center space-x-2 text-sm text-muted-foreground mb-4">
-              <Link href="/" className="hover:text-foreground">Home</Link>
+              <Link to="/" className="hover:text-foreground">Home</Link>
               <ChevronRight className="h-4 w-4" />
-              <Link href="/residential" className="hover:text-foreground">Residential</Link>
+              <Link to="/residential" className="hover:text-foreground">Residential</Link>
               {propertyType && (
                 <>
                   <ChevronRight className="h-4 w-4" />
@@ -108,7 +108,7 @@ const ResidentialDetail = () => {
               <Button variant="hero" onClick={() => document.getElementById('properties')?.scrollIntoView({ behavior: 'smooth' })}>
                 View Properties
               </Button>
-              <Link href="/residential">
+              <Link to="/residential">
                 <Button variant="outline">Back to Residential</Button>
               </Link>
             </div>
@@ -128,9 +128,9 @@ const ResidentialDetail = () => {
               <p className="text-muted-foreground mb-4">
                 We're currently preparing exceptional {getPageTitle().toLowerCase()} properties for you.
               </p>
-              <Button variant="outline">
-                <Link href="/residential">Explore Other Properties</Link>
-              </Button>
+              <Link to="/residential">
+                <Button variant="outline">Explore Other Properties</Button>
+              </Link>
             </CardContent>
           </Card>
         ) : (
