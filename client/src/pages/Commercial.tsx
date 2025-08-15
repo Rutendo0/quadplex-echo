@@ -6,11 +6,11 @@ import { Badge } from "@/components/ui/badge";
 import { MapPin, Calendar, Wifi, Car, Coffee, Shield, Star, Users, Building2, Store, Zap } from "lucide-react";
 import { Link } from "wouter";
 import AshumiLogo from "@/components/AshumiLogo";
-import commercialExterior1 from "@assets/image_1755032117599.png";
-import commercialExterior2 from "@assets/image_1755032134655.png";
-import commercialOffice from "@assets/image_1755032147406.png";
-import commercialRetail from "@assets/image_1755032159378.png";
-import commercialInterior from "@assets/image_1755032194653.png";
+import commercialExterior1 from "/properties/commercial/image5.jpeg";
+import commercialExterior2 from "/properties/commercial/image1.jpeg";
+import commercialOffice from "/properties/commercial/image2.jpeg";
+import commercialRetail from "/properties/commercial/image3.jpeg";
+import commercialInterior from "/properties/commercial/image6.jpeg";
 
 const Commercial = () => {
   const canonical = typeof window !== 'undefined' ? window.location.href : 'https://ashumi-estate.com/commercial';
@@ -68,7 +68,7 @@ const Commercial = () => {
   ];
 
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-[hsl(var(--earth-sand))]">
       <Helmet>
         <title>Commercial Spaces | Ashumi Estates</title>
         <meta name="description" content="Discover modern commercial spaces at Ashumi Estates - retail, office suites, and innovation hubs in Harare's fastest-growing node." />
@@ -83,7 +83,7 @@ const Commercial = () => {
       </div>
 
       {/* Hero Section */}
-      <section className="relative py-24 overflow-hidden">
+      <section className="relative min-h-[80vh] md:min-h-[90vh] overflow-hidden flex items-center">
         <div className="absolute inset-0">
           <img 
             src={commercialExterior1} 
@@ -91,6 +91,15 @@ const Commercial = () => {
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-black/40" />
+          {/* Classic top-right quick nav */}
+          <div className="absolute top-6 right-6 hidden md:flex gap-3">
+            <Link href="/">
+              <Button size="sm" className="bg-[hsl(var(--earth-beige))] text-[hsl(var(--ashumi-black-90))] hover:bg-[hsl(var(--earth-sand))]">Back Home</Button>
+            </Link>
+            <Link href="/residential">
+              <Button size="sm" className="bg-[hsl(var(--earth-beige))] text-[hsl(var(--ashumi-black-90))] hover:bg-[hsl(var(--earth-sand))]">View Residential</Button>
+            </Link>
+          </div>
         </div>
         
         <div className="relative container mx-auto px-6 text-center text-white">
@@ -106,19 +115,21 @@ const Commercial = () => {
               World-class commercial spaces in Zimbabwe's most dynamic development
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3">
+              <Button size="lg" className="bg-[hsl(var(--earth-gold))] hover:bg-[hsl(var(--earth-brown))] text-white px-8 py-3">
                 Explore Opportunities
               </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-black px-8 py-3">
-                Download Brochure
-              </Button>
+              <a href="/brochure.pdf" download>
+                <Button size="lg" className="bg-[hsl(var(--earth-beige))] text-[hsl(var(--ashumi-black-90))] hover:bg-[hsl(var(--earth-sand))] px-8 py-3">
+                  Download Brochure
+                </Button>
+              </a>
             </div>
           </motion.div>
         </div>
       </section>
 
       {/* Commercial Spaces Grid */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-[hsl(var(--earth-sand))]">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Commercial Opportunities</h2>
@@ -134,7 +145,7 @@ const Commercial = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+                className="bg-white/90 backdrop-blur rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
               >
                 <div className="relative h-64">
                   <img 
@@ -142,22 +153,22 @@ const Commercial = () => {
                     alt={space.title}
                     className="w-full h-full object-cover"
                   />
-                  <Badge className="absolute top-4 left-4 bg-blue-600 text-white">
+                  <Badge className="absolute top-4 left-4 bg-[hsl(var(--earth-brown))] text-white">
                     {space.status}
                   </Badge>
                 </div>
                 
                 <div className="p-6">
                   <div className="flex items-center justify-between mb-3">
-                    <h3 className="text-2xl font-bold text-gray-900">{space.title}</h3>
-                    <Badge variant="secondary">{space.size}</Badge>
+                    <h3 className="text-2xl font-bold" style={{ color: 'hsl(var(--ashumi-black-90))' }}>{space.title}</h3>
+                    <Badge variant="secondary" className="bg-[hsl(var(--earth-beige))] text-[hsl(var(--ashumi-black-90))]">{space.size}</Badge>
                   </div>
                   
-                  <p className="mb-4 text-sm font-medium text-blue-600">
+                  <p className="mb-4 text-sm font-medium" style={{ color: 'hsl(var(--earth-brown))' }}>
                     {space.category}
                   </p>
                   
-                  <p className="text-gray-700 mb-4 leading-relaxed">
+                  <p className="mb-4 leading-relaxed text-[hsl(var(--ashumi-black-80))]">
                     {space.description}
                   </p>
                   
@@ -165,15 +176,15 @@ const Commercial = () => {
                     <h4 className="font-semibold text-gray-900">Key Features:</h4>
                     <div className="grid grid-cols-2 gap-2">
                       {space.features.map((feature, idx) => (
-                        <div key={idx} className="flex items-center text-sm text-gray-600">
-                          <div className="w-2 h-2 bg-blue-600 rounded-full mr-2"></div>
+                        <div key={idx} className="flex items-center text-sm text-[hsl(var(--ashumi-black-70))]">
+                          <div className="w-2 h-2 bg-[hsl(var(--earth-gold))] rounded-full mr-2"></div>
                           {feature}
                         </div>
                       ))}
                     </div>
                   </div>
                   
-                  <Button className="w-full bg-blue-600 hover:bg-blue-700">
+                  <Button className="w-full bg-[hsl(var(--earth-gold))] hover:bg-[hsl(var(--earth-brown))] text-white">
                     Learn More
                   </Button>
                 </div>
@@ -184,7 +195,7 @@ const Commercial = () => {
       </section>
 
       {/* Amenities Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-[hsl(var(--earth-sand))]">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Premium Amenities</h2>
@@ -200,13 +211,13 @@ const Commercial = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="text-center p-6 rounded-lg hover:shadow-lg transition-shadow duration-300"
+                className="text-center p-6 rounded-lg hover:shadow-lg transition-shadow duration-300 bg-white/80 backdrop-blur"
               >
-                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <amenity.icon className="w-8 h-8 text-blue-600" />
+                <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 bg-[hsl(var(--earth-beige))]">
+                  <amenity.icon className="w-8 h-8" style={{ color: 'hsl(var(--earth-brown))' }} />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">{amenity.title}</h3>
-                <p className="text-gray-600">{amenity.description}</p>
+                <h3 className="text-xl font-semibold mb-3" style={{ color: 'hsl(var(--ashumi-black-90))' }}>{amenity.title}</h3>
+                <p className="text-[hsl(var(--ashumi-black-70))]">{amenity.description}</p>
               </motion.div>
             ))}
           </div>
@@ -214,7 +225,7 @@ const Commercial = () => {
       </section>
 
       {/* Call to Action */}
-      <section className="py-20 bg-blue-600 text-white">
+      <section className="py-20 bg-[hsl(var(--earth-brown))] text-white">
         <div className="container mx-auto px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -226,10 +237,10 @@ const Commercial = () => {
               Join Zimbabwe's most exciting commercial development. Contact our sales team for investment opportunities and space availability.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" variant="secondary" className="px-8 py-3">
+              <Button size="lg" variant="secondary" className="px-8 py-3 bg-[hsl(var(--earth-gold))] text-black hover:bg-[hsl(var(--earth-sand))]">
                 Contact Sales Team
               </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-blue-600 px-8 py-3">
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-[hsl(var(--earth-brown))] px-8 py-3">
                 Schedule Site Visit
               </Button>
             </div>
@@ -238,7 +249,7 @@ const Commercial = () => {
       </section>
 
       {/* Navigation */}
-      <section className="py-8 bg-gray-100">
+      <section className="py-8 bg-[hsl(var(--earth-beige))]">
         <div className="container mx-auto px-6 text-center">
           <Link to="/">
             <Button variant="outline" className="mr-4">

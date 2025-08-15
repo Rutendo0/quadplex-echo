@@ -1,5 +1,4 @@
 import React from 'react';
-import ashumiLogoImage from "@assets/screenshot-1755185861498_1755186818280.png";
 
 interface AshumiLogoProps {
   className?: string;
@@ -20,7 +19,7 @@ const AshumiLogo: React.FC<AshumiLogoProps> = ({
   return (
     <div className={`${className}`}>
       <img 
-        src={ashumiLogoImage} 
+        src="/logo.png" 
         alt="Ashumi Estates" 
         className={`${sizeClasses[size]} w-auto object-contain`}
       />

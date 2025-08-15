@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRoute, Link } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import { Helmet } from "react-helmet-async";
@@ -37,6 +37,9 @@ const ResidentialDetailNew = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [showBookingModal, setShowBookingModal] = useState(false);
   const [calculationData, setCalculationData] = useState<any>(null);
+  const [showFloorplanModal, setShowFloorplanModal] = useState(false);
+  const [showVirtualTourModal, setShowVirtualTourModal] = useState(false);
+  const [isSaved, setIsSaved] = useState(false);
   
   const propertyType = params?.type;
   const propertySubtype = params?.subtype;
@@ -140,21 +143,21 @@ const ResidentialDetailNew = () => {
       </Helmet>
 
       {/* Navigation Header */}
-      <div className="world-class-hero">
-        <div className="container mx-auto px-4 py-6">
+      <div className="bg-[hsl(var(--earth-sand))]/80 backdrop-blur border-b border-[hsl(var(--earth-brown))]/20">
+        <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <Link href="/residential">
-              <Button variant="ghost" className="text-muted-foreground hover:text-primary">
+              <Button className="bg-[hsl(var(--earth-beige))] text-[hsl(var(--ashumi-black-90))] hover:bg-[hsl(var(--earth-sand))]">
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 Back to Residential
               </Button>
             </Link>
-            <div className="flex items-center space-x-4">
-              <Button variant="outline" size="sm">
-                <Heart className="h-4 w-4 mr-1" />
-                Save
+            <div className="flex items-center space-x-2">
+              <Button variant={isSaved ? "default" : "outline"} size="sm" onClick={() => setIsSaved((s) => !s)}>
+                <Heart className={`h-4 w-4 mr-1 ${isSaved ? 'fill-current text-red-600' : ''}`} />
+                {isSaved ? 'Saved' : 'Save'}
               </Button>
-              <Button variant="outline" size="sm">
+              <Button variant="outline" size="sm" onClick={() => navigator?.share ? navigator.share({ title: property.name, text: property.shortDescription || property.name, url: typeof window !== 'undefined' ? window.location.href : '' }) : navigator?.clipboard?.writeText(typeof window !== 'undefined' ? window.location.href : '')}>
                 <Share2 className="h-4 w-4 mr-1" />
                 Share
               </Button>
@@ -204,14 +207,30 @@ const ResidentialDetailNew = () => {
           {/* Property Summary */}
           <div className="space-y-6">
             <div className="premium-card p-6 rounded-xl">
-              <h1 className="heading-lg hero-text mb-2">{property.name}</h1>
-              <p className="text-elegant body-lg mb-4">{property.shortDescription}</p>
+              <h1 className="text-3xl md:text-4xl font-bold mb-2" style={{ color: 'hsl(var(--ashumi-black-90))' }}>{property.name}</h1>
+              <p className="text-base md:text-lg mb-4 text-[hsl(var(--ashumi-black-70))]">{property.shortDescription}</p>
               
               <div className="flex items-center justify-between mb-6">
                 <div className="text-3xl font-bold text-premium">{property.price}</div>
                 {property.ownershipType === 'sale' && (
                   <Badge variant="secondary" className="text-premium">For Sale</Badge>
                 )}
+              </div>
+
+              {/* Quick actions */}
+              <div className="flex flex-wrap gap-3 mb-6">
+                <Button size="sm" variant="outline" onClick={() => setShowVirtualTourModal(true)}>
+                  <Layout className="h-4 w-4 mr-2" />
+                  Virtual Tour
+                </Button>
+                <Button size="sm" variant="outline" onClick={() => setShowFloorplanModal(true)}>
+                  <Layout className="h-4 w-4 mr-2" />
+                  View Floorplans
+                </Button>
+                <Button size="sm" onClick={() => document.getElementById('calc')?.scrollIntoView({ behavior: 'smooth' })}>
+                  <Calculator className="h-4 w-4 mr-2" />
+                  Payment Calculator
+                </Button>
               </div>
 
               <div className="grid grid-cols-2 gap-4 mb-6">
@@ -344,10 +363,13 @@ const ResidentialDetailNew = () => {
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     <div>
                       <img 
-                        src={property.floorPlanImages[0] || '/api/placeholder/600/400'} 
+                        src={property.floorPlanImages?.[0] || '/api/placeholder/600/400'} 
                         alt="Floor Plan"
                         className="w-full rounded-lg border"
                       />
+                      <div className="mt-3">
+                        <Button size="sm" variant="outline" onClick={() => setShowFloorplanModal(true)}>Open Gallery</Button>
+                      </div>
                     </div>
                     <div className="space-y-4">
                       <h3 className="text-lg font-semibold">Layout Features</h3>
@@ -417,7 +439,7 @@ const ResidentialDetailNew = () => {
             </TabsContent>
 
             <TabsContent value="calculator" className="mt-8">
-              <div className="max-w-4xl">
+              <div id="calc" className="max-w-4xl">
                 <PaymentCalculator 
                   propertyPrice={getPropertyPrice()}
                   propertyName={property.name}
@@ -492,6 +514,46 @@ const ResidentialDetailNew = () => {
           </div>
         </motion.div>
       </div>
+
+      {/* Floorplan Modal */}
+      {showFloorplanModal && (
+        <div className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4" onClick={() => setShowFloorplanModal(false)}>
+          <div className="bg-white rounded-lg max-w-5xl w-full max-h-[90vh] overflow-auto p-4" onClick={(e) => e.stopPropagation()}>
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="text-lg font-semibold">Floorplans</h3>
+              <Button variant="outline" size="sm" onClick={() => setShowFloorplanModal(false)}>Close</Button>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {property.floorPlanImages?.length ? property.floorPlanImages.map((src: string, idx: number) => (
+                <img key={idx} src={src} alt={`Floorplan ${idx+1}`} className="w-full rounded border" />
+              )) : (
+                <p>No floorplans available.</p>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Virtual Tour Modal */}
+      {showVirtualTourModal && (
+        <div className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4" onClick={() => setShowVirtualTourModal(false)}>
+          <div className="bg-white rounded-lg max-w-5xl w-full max-h-[90vh] overflow-auto p-4" onClick={(e) => e.stopPropagation()}>
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="text-lg font-semibold">Virtual Tour</h3>
+              <Button variant="outline" size="sm" onClick={() => setShowVirtualTourModal(false)}>Close</Button>
+            </div>
+            {property.interiorVideos?.length ? (
+              <div className="space-y-4">
+                {property.interiorVideos.map((src: string, idx: number) => (
+                  <video key={idx} src={src} controls className="w-full rounded border" />
+                ))}
+              </div>
+            ) : (
+              <p>No virtual tour videos available.</p>
+            )}
+          </div>
+        </div>
+      )}
 
       {/* Booking Modal */}
       {showBookingModal && property && calculationData && (

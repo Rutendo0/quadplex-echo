@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Calculator, Heart, Building, Phone, Mail } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
@@ -17,6 +17,20 @@ const StickyCalculator: React.FC<StickyCalculatorProps> = ({
   const [showBooking, setShowBooking] = useState(false);
   const [selectedProperty, setSelectedProperty] = useState<any>(null);
   const [calculationData, setCalculationData] = useState<any>(null);
+  const [showInfo, setShowInfo] = useState(false);
+  const [showSavePicker, setShowSavePicker] = useState(false);
+  const [savedIds, setSavedIds] = useState<number[]>(() => {
+    if (typeof window === 'undefined') return [];
+    try { return JSON.parse(localStorage.getItem('saved_properties') || '[]'); } catch { return []; }
+  });
+  const [allProps, setAllProps] = useState<any[]>([]);
+  const [loadingProps, setLoadingProps] = useState(false);
+
+  const saved = savedIds.length > 0;
+
+  useEffect(() => {
+    try { localStorage.setItem('saved_properties', JSON.stringify(savedIds)); } catch {}
+  }, [savedIds]);
 
   const currentPath = typeof window !== 'undefined' ? window.location.pathname : '/';
   
@@ -51,25 +65,39 @@ const StickyCalculator: React.FC<StickyCalculatorProps> = ({
     {
       icon: Heart,
       label: "Save Favorites", 
-      action: () => {},
+      action: async () => {
+        setShowSavePicker(true);
+        if (allProps.length === 0 && !loadingProps) {
+          try {
+            setLoadingProps(true);
+            const res = await fetch('/api/properties?category=residential');
+            const data = await res.json();
+            setAllProps(data);
+          } catch {
+            setAllProps([]);
+          } finally {
+            setLoadingProps(false);
+          }
+        }
+      },
       color: "hsl(var(--earth-brown))"
     },
     {
       icon: Building,
       label: "Property Info",
-      action: () => {},
+      action: () => setShowInfo(true),
       color: "hsl(var(--ashumi-black-70))"
     },
     {
       icon: Phone,
       label: "Call Us",
-      action: () => window.open('tel:+250781234567'),
+      action: () => window.location.href = 'tel:+263771234567',
       color: "hsl(var(--earth-gold))"
     },
     {
       icon: Mail,
       label: "Email",
-      action: () => window.open('mailto:info@ashumiestate.com'),
+      action: () => window.location.href = 'mailto:info@ashumiestate.com?subject=Inquiry%20from%20Website',
       color: "hsl(var(--earth-brown))"
     }
   ];
@@ -131,11 +159,19 @@ const StickyCalculator: React.FC<StickyCalculatorProps> = ({
 
       {/* Modals */}
       {showCalculator && selectedProperty && (
-        <PaymentCalculator
-          propertyPrice={selectedProperty.price}
-          propertyName={selectedProperty.name}
-          onBookingClick={handleBookingClick}
-        />
+        <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4" onClick={() => setShowCalculator(false)}>
+          <div className="bg-white rounded-lg max-w-3xl w-full p-4" onClick={(e) => e.stopPropagation()}>
+            <div className="flex justify-between items-center mb-3">
+              <h3 className="text-lg font-semibold">Payment Calculator</h3>
+              <Button variant="outline" size="sm" onClick={() => setShowCalculator(false)}>Close</Button>
+            </div>
+            <PaymentCalculator
+              propertyPrice={selectedProperty.price}
+              propertyName={selectedProperty.name}
+              onBookingClick={handleBookingClick}
+            />
+          </div>
+        </div>
       )}
 
       {showBooking && calculationData && (
@@ -145,6 +181,61 @@ const StickyCalculator: React.FC<StickyCalculatorProps> = ({
           property={selectedProperty}
           calculationData={calculationData}
         />
+      )}
+
+      {showInfo && (
+        <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4" onClick={() => setShowInfo(false)}>
+          <div className="bg-white rounded-lg max-w-xl w-full p-4" onClick={(e) => e.stopPropagation()}>
+            <div className="flex justify-between items-center mb-3">
+              <h3 className="text-lg font-semibold">Property Info</h3>
+              <Button variant="outline" size="sm" onClick={() => setShowInfo(false)}>Close</Button>
+            </div>
+            <div className="space-y-2 text-sm text-[hsl(var(--ashumi-black-90))]">
+              <p>Explore residential options at Ashumi Estate. Use the Payment Calculator to estimate your plan, then book.</p>
+              <p>Call us: <a href="tel:+263771234567" className="text-blue-600 underline">+263 77 123 4567</a></p>
+              <p>Email: <a href="mailto:info@ashumiestate.com" className="text-blue-600 underline">info@ashumiestate.com</a></p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {showSavePicker && (
+        <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4" onClick={() => setShowSavePicker(false)}>
+          <div className="bg-white rounded-lg max-w-4xl w-full p-4" onClick={(e) => e.stopPropagation()}>
+            <div className="flex justify-between items-center mb-3">
+              <h3 className="text-lg font-semibold">Save Favorites</h3>
+              <Button variant="outline" size="sm" onClick={() => setShowSavePicker(false)}>Close</Button>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {loadingProps ? (
+                <div className="col-span-full text-center py-8 text-muted-foreground">Loading properties...</div>
+              ) : (
+                allProps.map((p) => {
+                  const isSaved = savedIds.includes(p.id);
+                  return (
+                    <div key={p.id} className="border rounded-lg overflow-hidden">
+                      <div className="h-32 bg-gray-100">
+                        <img src={(p.exteriorImages && p.exteriorImages[0]) || '/placeholder.svg'} alt={p.name} className="w-full h-full object-cover" />
+                      </div>
+                      <div className="p-3">
+                        <div className="font-semibold text-sm mb-1">{p.name}</div>
+                        <div className="text-xs text-muted-foreground mb-2">{p.shortDescription || '—'}</div>
+                        <Button
+                          size="sm"
+                          variant={isSaved ? 'default' : 'outline'}
+                          onClick={() => setSavedIds((ids) => isSaved ? ids.filter(id => id !== p.id) : [...ids, p.id])}
+                          className="w-full"
+                        >
+                          {isSaved ? 'Saved' : 'Save'}
+                        </Button>
+                      </div>
+                    </div>
+                  );
+                })
+              )}
+            </div>
+          </div>
+        </div>
       )}
     </>
   );
